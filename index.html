@@ -1,409 +1,441 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http - equiv="x-ua-compatible" content="ie=edge">
-    <title>freeplus的零添加主張</title>
-    <!-- facebook share-->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:site_name" content="">
-    <meta property="og:url" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon-->
-    <link rel="icon" href="img/favicon.ico">
-    <!-- css style-->
-    <link rel="stylesheet" href="css/style.css">
-    <!--if gt IE 9-->
-    <script src="js/vendor/html5shiv.js"></script>
-    <script src="js/vendor/jquery-3.2.1.min.js"></script><script src="https://use.typekit.net/qcf8qyo.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
-    <!-- own style-->
-    <link rel="stylesheet" href="">
-  </head>
-  <body>
-    <div class="trans_bg">
-      <div class="trans_ipad">
-        <div class="trans_center"><img src="img/ipad_ok_landscape.png">                
-          <p>請將裝置轉至直式<br>體驗最佳瀏覽方式</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta http - equiv="x-ua-compatible" content="ie=edge">
+        <title>freeplus的零添加主張</title>
+        <!-- facebook share-->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="">
+        <meta property="og:description" content="">
+        <meta property="og:image" content="">
+        <meta property="og:site_name" content="">
+        <meta property="og:url" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- favicon-->
+        <link rel="icon" href="img/favicon.ico">
+        <!-- css style-->
+        <link rel="stylesheet" href="css/style.css">
+        <!--if gt IE 9-->
+        <script src="js/vendor/html5shiv.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+        <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+        <script src="js/vendor/isMobile.min.js"></script>
+        <script src="js/vendor/ch.min.js"></script>
+        <script src="js/vendor/ga.js"></script>
+        <script src="https://use.typekit.net/qcf8qyo.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+        <!-- own style-->
+        <link rel="stylesheet" href="css/self.css">
+    </head>
+    <body>
+        <div id="indexPage" v-cloak>
+            <div class="trans_bg">
+                <div class="trans_ipad">
+                    <div class="trans_center"><img src="img/ipad_ok_landscape.png">                
+                        <p>請將裝置轉至直式<br>體驗最佳瀏覽方式</p>
+                    </div>
+                </div>
+                <div class="trans_iphone">
+                    <div class="trans_center"><img src="img/iphone_ok.png">                
+                        <p>請將裝置轉至直式<br>體驗最佳瀏覽方式</p>
+                    </div>
+                </div>
+            </div>
+            <transition name="fade">
+                <div class="popup" style="display:none;">
+                    <div class="main form-check"><a class="close" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                        <p>請輸入真實姓名</p>
+                        <p>請輸入真實姓名</p>
+                        <p>請同意相關規定</p>
+                    </div>
+                    <div class="bg"></div>
+                </div>
+            </transition>
+            <transition name="fade">
+                <div class="popup" v-show="doneFG">
+                    <div class="main"><a class="close" @click.prevent.self href=""><img @click="doneFG = false" src="asset/svg/del.svg" alt=""/></a>
+                        <div class="sub">謝謝您的參與<br>中獎名單將於2018/03/31公佈</div>
+                        <h4 class="blue">＼邀您搶先體驗！／<br>                    【freeplus泡泡體驗快閃活動】 </h4>
+                        <div class="sub">我的零添加主張，就從洗臉開始！ </div>
+                        <div class="sub">凡參加freeplus泡泡體驗， <br>即可獲得洗顏皂霜試用包及奶泡咖啡!</div>
+                        <div class="sub-tt blue"> 活動時間 </div>
+                        <div class="timeBox">
+                            <div class="time">
+                                <ul> 
+                                    <li class="date">3/2  </li>
+                                    <li>17:00-21:00</li>
+                                </ul>
+                            </div>
+                            <div class="time">
+                                <ul> 
+                                    <li class="date">3/3-3/4   </li>
+                                    <li>13:00-21:00</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sub-tt blue"> 活動地點</div>
+                        <div class="sub">ATT 4 fun forever21前廣場</div>
+                    </div>
+                    <div class="bg"></div>
+                </div>
+            </transition>
+            <!-- content-->
+            <div class="wrap">
+                <!-- header -->
+                <!-- add '.open'-->
+                <header :class="{ 'open' : menuFG }"><a class="logo" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
+                    <!-- bur-->
+                    <div class="burBox" @click="menuFG = !menuFG"><a class="bur" :class="{ 'active' : menuFG }" href="" @click.prevent.self><span></span></a></div>
+                    <!-- M Menu-->
+                </header>
+                <transition name="fade">
+                    <div class="menuBox" v-show="menuFG">
+                        <ul>
+                            <li><a @click.prevent.self="scrollMenu();" :class="{ 'active' : pageStep == 0 }" href="#">回首頁</a></li>
+                            <li><a @click.prevent.self="scrollMenu('intro');" :class="{ 'active' : pageStep == 1 }" href="#">品牌介紹</a></li>
+                            <li><a @click.prevent.self="scrollMenu('game');" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
+                            <li><a @click.prevent.self="scrollMenu('about');" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
+                            <li><a @click.prevent.self="scrollMenu('productBox');" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
+                            <li><a href="#">中獎名單</a></li>
+                            <li><a @click.prevent.self="actFG = true" href="#">活動辦法</a></li>
+                        </ul><a class="menu-logo poabs" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
+                        <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
+                        </div>
+                    </div>
+                </transition>
+                <div class="container">
+                    <transition name="fade">
+                        <div v-show="goGameFG" class="btnBox-kv poabs" @click="scrollMenu('game', 95);"><a class="btn-game bg-blue" @click.prevent.self href="#">
+                            <div class="inner"><span class="pro"><img src="img/btn-pro.png" alt=""/></span><span>測驗抽正貨</span><span class="triBox"><span class="triangle"></span></span></div></a></div>
+                    </transition>
+                    <!--kv-->
+                    <section class="kv">
+                        <h1 class="blue"><span class="font-s">只給肌膚需要的</span><span class="main"><span class="f-logo"><img src="asset/svg/freeplus.svg" alt=""/></span><span>的零添加主張</span></span></h1>
+                        <div class="mainBox">
+                            <div class="kv-product"><img src="img/kv.png" alt=""/>
+                            </div>
+                            <div class="bubbleBox">
+                                <div class="bb1 poabs bubbleWord">
+                                    <div class="txt"><span class="zero">零</span><span class="detail">添加<br>香料色素</span></div>
+                                </div>
+                                <div class="bb2 poabs bubbleWord">
+                                    <div class="txt"><span class="zero">零</span><span class="detail">添加Paraben<br>防腐劑</span></div>
+                                </div>
+                                <div class="bb3 poabs bubbleWord">
+                                    <div class="txt"><span class="zero">零</span><span class="detail">添加<br>酒精</span></div>
+                                </div>
+                                <div class="he1 poabs"><img class="bubbleImg" src="img/he1.png" alt=""/>
+                                </div>
+                                <div class="he2 poabs"><img class="bubbleImg" src="img/he2.png" alt=""/>
+                                </div>
+                                <div class="he3 poabs"><img class="bubbleImg" src="img/he3.png" alt=""/>
+                                </div>
+                                <div class="he4 poabs"><img class="bubbleImg" src="img/he4.png" alt=""/>
+                                </div>
+                                <div class="he5 poabs"><img class="bubbleImg" src="img/he5.png" alt=""/>
+                                </div>
+                                <div class="he6 poabs"><img class="bubbleImg" src="img/he6.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll blue">scroll<span></span></div>
+                        <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/></div>
+                        <div class="waterdrop poabs"></div>
+                        <div class="blur poabs"><img src="img/blur.png" alt=""/></div>
+                        <img src="img/bubble.png" alt="" class="bubble one">
+                        <img src="img/bubble.png" alt="" class="bubble two">
+                        <img src="img/bubble.png" alt="" class="bubble three">
+                        <img src="img/bubble.png" alt="" class="bubble four">
+                        <img src="img/bubble.png" alt="" class="bubble five">
+                        <img src="img/bubble.png" alt="" class="bubble six">
+                        <img src="img/bubble.png" alt="" class="bubble seven">
+                        <img src="img/bubble.png" alt="" class="bubble eight">
+                    </section>
+                    <!--intro-->
+                    <section class="intro">
+                        <div class="txt-fir"><span><span class="inlineblock">零添加的</span><span class="f-logo inlineblock"><img src="asset/svg/freeplus.svg" alt=""/></span></span><span>堅持選用不易造成肌膚負擔的成份</span><span>只給肌膚需要的水潤呵護</span><span class="lighthigh blue">“ 懂得捨棄，才能獲得嶄新的可能。”</span></div>
+                        <div class="txt-sec"><span>即刻開啟妳的</span><span class="lighthigh blue"> <span class="underline">零添加生活 !</span></span></div>
+                        <div class="txt-thir"><span>\從敏感肌研究誕生/</span><span>“ 從零開始，喚醒妳的水潤時刻 ”</span>
+                            <div class="video">
+                                <div class="embed-container">
+                                    <iframe src="https://www.youtube.com/embed/x3a_h4NwEiQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cloud1 poabs"><img src="img/cloud1.png" alt=""/>
+                        </div>
+                        <div class="cloud2 poabs"><img src="img/cloud2.png" alt=""/>
+                        </div>
+                        <div class="cloud3 poabs"><img src="img/cloud3.png" alt=""/>
+                        </div>
+                    </section>
+                    <!--game-->
+                    <section class="game">
+                        <div class="step1">
+                            <div class="game-tt blue"><span>零添加主張</span><span>
+                                <span class="underline">捨/得測驗</span></span><span class="sub">學會捨棄，才能讓生活別具意義</span></div>
+                            <div class="tree poabs"><img src="img/tree.png" alt=""/>
+                            </div>
+                            <div class="main">
+                                <div class="stickerBox">
+                                    <ul>
+                                        <li><a class="option1 active" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
+                                            <span class="txt">瓶瓶罐罐</span></a></li>
+                                        <li><a class="option2" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
+                                            <span class="txt">舊娃娃</span></a></li>
+                                        <li><a class="option3" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
+                                            <span class="txt">速食快餐</span></a></li>
+                                        <li><a class="option4" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
+                                            <span class="txt">摩托車</span></a></li>
+                                        <li><a class="option5" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
+                                            <span class="txt">彩妝品</span></a></li>
+                                        <li><a class="option6" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
+                            </div><a class="btn" href="#">我決定好了<span class="arrow"></span></a>
+                        </div>
+                        <div class="step2" style="display:none;">
+                            <div class="main">
+                                <div class="result-tt"><span>肌膚的</span><span><span class="blue underline"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span></span><span>秘密是</span></span></div>
+                                <div class="resultBox">
+                                    <div class="topic">斷</div>
+                                    <div class="topic" style="display:none;">捨</div>
+                                    <div class="topic" style="display:none;">離</div>
+                                    <div class="detail">
+                                        <div class="img result1"><img src="img/sticker/result1.png" alt=""/>
+                                        </div>
+                                        <div class="txt">妳懂得捨棄過多的想要，<br>留下真正需要，<br>就像<span>freeplus零添加，<br></span>才是對自己真正好。 </div>
+                                    </div>
+                                    <div class="detail" style="display:none;">
+                                        <div class="img result2"><img src="img/sticker/result2.png" alt=""/>
+                                        </div>
+                                        <div class="txt">妳擁有揮別過往的勇氣，<br>擁抱<span>零添加、低刺激的freeplus，<br></span>重啟純淨美肌。</div>
+                                    </div>
+                                    <div class="detail" style="display:none;">
+                                        <div class="img result3"><img src="img/sticker/result3.png" alt=""/>
+                                        </div>
+                                        <div class="txt">妳願意斷開不好的事物，<br>如同<span>freeplus零添加香料色素，<br></span>才能展現生活的真實本色。 </div>
+                                    </div>
+                                    <div class="detail" style="display:none;">
+                                        <div class="img result4"><img src="img/sticker/result4.png" alt=""/>
+                                        </div>
+                                        <div class="txt">踏上純淨之路的你，<br>選擇對地球溫柔，<br>就像<span>零添加的freeplus<br></span>給肌膚的溫柔呵護。</div>
+                                    </div>
+                                    <div class="detail" style="display:none;">
+                                        <div class="img result5"><img src="img/sticker/result5.png" alt=""/>
+                                        </div>
+                                        <div class="txt">妳能適時中斷粉飾外表的偽裝，<br> 選擇<span>零添加的freeplus，<br></span>重拾自然少負擔的肌膚保養。 </div>
+                                    </div>
+                                    <div class="detail" style="display:none;">
+                                        <div class="img result6"><img src="img/sticker/result6.png" alt=""/>
+                                        </div>
+                                        <div class="txt">妳理解捨棄與釋懷後，<br>才能迎接全新局面，<br>就讓<span>零添加的freeplus，</span><br>還你真美顏。</div>
+                                    </div><a class="btn-again" href="#">
+                                    <div class="inner">
+                                        <div class="content"><span class="icon"> <img src="asset/svg/again.svg" alt=""/></span><span>再玩一次</span></div>
+                                    </div></a>
+                                </div>
+                                <div class="leaves"><img src="img/leaves.png" alt=""/>
+                                </div>
+                            </div>
+                            <div class="btnBox"><a class="fb btn" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
+                        </div>
+                    </section>
+                    <!--form-->
+                    <section class="form">
+                        <h2><span>\ 立即體驗<span class="underline blue"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span><span class="dot">生</span><span class="dot">活</span></span> /</span><span>讓肌膚重見轉機！</span></h2>
+                        <div class="sub">即日起至2018年3月31日止<br>填妥資料即可參加抽獎！</div>
+                        <div class="award">
+                            <ul>
+                                <li>
+                                    <div class="img">
+                                        <div class="fir-prize"><img src="img/gift1.png" alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="detail">
+                                        <div class="tt underline blue">首獎</div>
+                                        <div class="txt">freeplus溫和淨潤皂霜 & freeplus溫和淨潤卸粧霜正貨乙組，共5名</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img">
+                                        <div class="normal-prize"><img src="img/gift2.png" alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="detail">
+                                        <div class="tt underline blue">普獎</div>
+                                        <div class="txt">freeplus溫和淨潤皂霜7g (三日份) 試用包乙份，共1992名</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="deco"><img src="img/deco.png" alt=""/>
+                            </div>
+                        </div>
+                        <div class="main">
+                            <div class="cream"><img src="img/soap cream.png" alt=""/>
+                            </div>
+                            <div class="formBox">
+                                <ul>
+                                    <!-- li.warn -->
+                                    <li>
+                                        <label class="blue">姓名</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <input  type="text" maxlength="5" placeholder="請填寫真實姓名">
+                                    </li>
+                                    <li>
+                                        <label class="blue">電話</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <input type="tel" maxlength="15" placeholder="請輸入聯絡電話">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="formBox">
+                                <label class="blue add-label">收件地址</label>
+                                <ul>
+                                    <li class="selectStyle">
+                                        <ul>
+                                            <li>
+                                                <select>
+                                                    <option value="0">請選擇縣市</option>
+                                                    <option value="1">台北市</option>
+                                                    <option value="2">新北市</option>
+                                                </select>
+                                            </li> 
+                                            <li>
+                                                <select>
+                                                    <option value="0">請選擇區域</option>
+                                                    <option value="1">信義區</option>
+                                                    <option value="2">大安區</option>
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="add"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <input type="text" maxlength="30" placeholder="請輸入詳細地址">
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--- div.warn-check -->
+                            <div class="check">
+                                <label class="label-radio">
+                                    <input class="radio" type="radio" name="foo"><span>本人同意<a href="#">活動辦法、個資法與隱私權</a>相關規定</span>
+                                </label>
+                            </div><a class="btn" href="#">確認送出<span class="arrow"></span></a>
+                        </div>
+                        <div class="light-bg"><img src="img/light.png" alt=""/>
+                        </div>
+                    </section>
+                    <!-- about-->
+                    <section class="about">
+                        <div class="featureBox">
+                            <h2><span>\ 敏弱肌也<span class="underline blue"> <span class="dot">安</span><span class="dot">心</span></span> /</span></h2>
+                            <h3>“ 零添加 <span class="cross">Ｘ </span>低刺激  呵護肌膚！ ”</h3>
+                            <div class="feature blue">
+                                <ul>
+                                    <li>
+                                        <div class="inner"><span class="zero">零</span><span class="detail">添加<br>香料色素</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="inner"><span class="zero">零</span><span class="detail">添加<br>酒精</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="inner"><span class="zero">零</span><span class="detail">添加Paraben<br>防腐劑</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a class="btn" href="#">低刺激配方無藏私公開<span class="arrow"></span></a>
+                        </div>
+                        <div class="heBox">
+                            <h2><span>\ 實現<span class="underline blue"> <span class="dot">高</span><span class="dot">保</span><span class="dot">水</span><span class="dot">力</span></span> /</span></h2>
+                            <h3>“ 精選 6 種和漢保濕植萃 ”</h3>
+                            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a class="btn" href="#">和漢植物的小故事<span class="arrow"></span></a>
+                            <div class="he-bg"><img src="img/plant.png" alt=""/>
+                            </div>
+                        </div>
+                    </section>
+                    <!--product-->
+                    <section class="productBox">
+                        <div class="pro-kv">
+                            <h2><span>\ 捨棄多餘，留下<span class="underline blue"> <span class="dot">精</span><span class="dot">華</span></span> /</span></h2>
+                            <h3>“ 我們只給肌膚最需要的！ ”</h3>
+                        </div>
+                        <div class="product">
+                            <div class="top">
+                                <div class="proBox">
+                                    <div class="pro-img pro1"><img src="img/pro1.png" alt=""/>
+                                    </div>
+                                    <div class="sticker poabs"><img src="img/pro1-sticker.png" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <ul>
+                                        <li class="blue">\經典人氣款/</li>
+                                        <li>溫和淨潤皂霜</li>
+                                        <li>“ 洗顏同時滋潤肌膚！ ”</li>
+                                        <li><a href="#">了解更多 ＋</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <ul>
+                                    <li>輕輕搓揉就能產生豐盈綿密的泡沫！</li>
+                                    <li>弱酸性配方，能深入肌膚紋理去除髒污，溫和低刺激。</li>
+                                    <li>和漢植物保濕成分，洗後能保有絕佳的潤澤狀態。</li>
+                                </ul>
+                                <div class="img"><img src="img/cream1.png" alt=""/>
+                                </div>
+                            </div>
+                            <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="top">
+                                <div class="detail">
+                                    <ul>
+                                        <li class="blue">\方便的按壓式/ </li>
+                                        <li>溫和淨潤洗顏泡沫</li>
+                                        <li>“ 泡沫豐盈綿滑洗後超潤澤！ ”</li>
+                                        <li><a href="#">了解更多 ＋</a></li>
+                                    </ul>
+                                </div>
+                                <div class="proBox">
+                                    <div class="pro-img pro2"><img src="img/pro2.png" alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="img"><img src="img/cream2.png" alt=""/>
+                                </div>
+                                <ul>
+                                    <li>輕輕一壓就有細緻綿密的洗顏泡沫！</li>
+                                    <li>洗淨髒污的同時，和漢植物保濕成分能迅速淨潤肌膚。</li>
+                                    <li>豐盈泡沫能減輕過度摩擦帶來的刺激，讓洗臉過程成為一種享受！</li>
+                                </ul>
+                            </div>
+                            <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
+                            </div>
+                        </div>
+                    </section>
+                    <!--shop-->
+                    <section class="shop">
+                        <div class="watsons">
+                            <h2><span>\ freeplus 就在妳身邊！ /</span></h2>
+                            <h3>“ 登台一週年，只在<span class="underline blue"> <span class="dot">屈</span><span class="dot">臣</span><span class="dot">氏</span></span>販售！ ”</h3>
+                            <div class="img"><img src="img/watsons.png" alt=""/>
+                            </div><a class="w-btn blue" href="#"><span>全台屈臣氏獨家販售！</span><span><span class="icon"><img src="asset/svg/pin.svg" alt=""/></span><span>查詢最近店點</span></span></a><a class="w-btn blue" href="#"><span>屈臣氏網路商城</span><span><span class="icon"><img src="asset/svg/cart.svg" alt=""/></span><span>搶先下單</span></span></a><a class="w-btn blue" href="#"><span>Yahoo! 超級商城也買得到！</span><span><span class="icon"><img src="asset/svg/shop.svg" alt=""/></span><span>查詢最近店點</span></span></a>
+                        </div>
+                        <div class="official">
+                            <h2><span>\一起變得更好/</span></h2>
+                            <h3>“ 零添加生活，<span class="underline blue"> <span class="dot">由</span><span class="dot">妳</span><span class="dot">啟</span><span class="dot">動</span></span>！ ”</h3>
+                            <div class="img"><img src="img/beauty.png" alt=""/>
+                            </div><a class="btn" href="#"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
+                        </div>
+                        <div class="txt">※此活動頁內的「零添加」文字，意指freeplus洗卸、保濕修護系列產品均無添加酒精、香料、色素、Paraben防腐劑。</div>
+                        <div class="txt">© 2018 Taiwan Kanebo Cosmetics Co.,LTD. All Rights Reserved.</div>
+                    </section>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="trans_iphone">
-        <div class="trans_center"><img src="img/iphone_ok.png">                
-          <p>請將裝置轉至直式<br>體驗最佳瀏覽方式</p>
-        </div>
-      </div>
-    </div>
-    <div class="popup" style="display:none;">
-      <div class="main"><a class="close" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-        <div class="sub">謝謝您的參與<br>中獎名單將於2018/03/31公佈</div>
-        <h4 class="blue">＼邀您搶先體驗！／<br>                    【freeplus泡泡體驗快閃活動】 </h4>
-        <div class="sub">我的零添加主張，就從洗臉開始！ </div>
-        <div class="sub">凡參加freeplus泡泡體驗， <br>即可獲得洗顏皂霜試用包及奶泡咖啡!</div>
-        <div class="sub-tt blue"> 活動時間 </div>
-        <div class="timeBox">
-          <div class="time">
-            <ul> 
-              <li class="date">3/2  </li>
-              <li>17:00-21:00</li>
-            </ul>
-          </div>
-          <div class="time">
-            <ul> 
-              <li class="date">3/3-3/4   </li>
-              <li>13:00-21:00</li>
-            </ul>
-          </div>
-        </div>
-        <div class="sub-tt blue"> 活動地點</div>
-        <div class="sub">ATT 4 fun forever21前廣場</div>
-      </div>
-      <div class="bg"></div>
-    </div>
-    <!-- content-->
-    <div class="wrap">
-      <!-- header -->
-      <!-- add '.open'-->
-      <header><a class="logo" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
-        <!-- bur-->
-        <div class="burBox"><a class="bur" href="#"><span></span></a><script  src="js/vendor/bur.js"></script></div>
-        <!-- M Menu-->
-      </header>
-      <div class="menuBox">
-        <ul>
-          <li><a href="＃">回首頁</a></li>
-          <li><a href="＃">品牌介紹</a></li>
-          <li><a class="active" href="＃">捨/得測驗</a></li>
-          <li><a href="＃">產品介紹</a></li>
-          <li><a href="＃">立即選購</a></li>
-          <li><a href="＃">中獎名單</a></li>
-          <li><a href="＃">活動辦法</a></li>
-        </ul><a class="menu-logo poabs" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
-        <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
-        </div>
-      </div>
-      <div class="container">
-        <div class="btnBox-kv poabs" style="display:none;"><a class="btn-game bg-blue" href="#">
-            <div class="inner"><span class="pro"><img src="img/btn-pro.png" alt=""/></span><span>測驗抽正貨</span><span class="triBox"><span class="triangle"></span></span></div></a></div>
-        <!--kv-->
-        <section class="kv">
-          <h1 class="blue"><span class="font-s">只給肌膚需要的</span><span class="main"><span class="f-logo"><img src="asset/svg/freeplus.svg" alt=""/></span><span>的零添加主張</span></span></h1>
-          <div class="mainBox">
-            <div class="kv-product"><img src="img/kv.png" alt=""/>
-            </div>
-            <div class="bubbleBox">
-              <div class="bb1 poabs">
-                <div class="txt"><span class="zero">零</span><span class="detail">添加<br>香料色素</span></div>
-              </div>
-              <div class="bb2 poabs">
-                <div class="txt"><span class="zero">零</span><span class="detail">添加Paraben<br>防腐劑</span></div>
-              </div>
-              <div class="bb3 poabs">
-                <div class="txt"><span class="zero">零</span><span class="detail">添加<br>酒精</span></div>
-              </div>
-              <div class="he1 poabs"><img src="img/he1.png" alt=""/>
-              </div>
-              <div class="he2 poabs"><img src="img/he2.png" alt=""/>
-              </div>
-              <div class="he3 poabs"><img src="img/he3.png" alt=""/>
-              </div>
-              <div class="he4 poabs"><img src="img/he4.png" alt=""/>
-              </div>
-              <div class="he5 poabs"><img src="img/he5.png" alt=""/>
-              </div>
-              <div class="he6 poabs"><img src="img/he6.png" alt=""/>
-              </div>
-            </div>
-          </div>
-          <div class="scroll blue">scroll<span></span></div>
-          <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
-          </div>
-          <div class="waterdrop poabs"></div>
-          <div class="blur poabs"><img src="img/blur.png" alt=""/>
-          </div>
-        </section>
-        <!--intro-->
-        <section class="intro">
-          <div class="txt-fir"><span><span class="inlineblock">零添加的</span><span class="f-logo inlineblock"><img src="asset/svg/freeplus.svg" alt=""/></span></span><span>堅持選用不易造成肌膚負擔的成份</span><span>只給肌膚需要的水潤呵護</span><span class="lighthigh blue">“ 懂得捨棄，才能獲得嶄新的可能。”</span></div>
-          <div class="txt-sec"><span>即刻開啟妳的</span><span class="lighthigh blue"> <span class="underline">零添加生活 !</span></span></div>
-          <div class="txt-thir"><span>\從敏感肌研究誕生/</span><span>“ 從零開始，喚醒妳的水潤時刻 ”</span>
-            <div class="video">
-              <div class="embed-container">
-                <iframe src="https://www.youtube.com/embed/x3a_h4NwEiQ" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-          <div class="cloud1 poabs"><img src="img/cloud1.png" alt=""/>
-          </div>
-          <div class="cloud2 poabs"><img src="img/cloud2.png" alt=""/>
-          </div>
-          <div class="cloud3 poabs"><img src="img/cloud3.png" alt=""/>
-          </div>
-        </section>
-        <!--game-->
-        <section class="game">
-          <div class="step1">
-            <div class="game-tt blue"><span>零添加主張</span><span>
-                <sapn class="underline">捨/得測驗</sapn></span><span class="sub">學會捨棄，才能讓生活別具意義</span></div>
-            <div class="tree poabs"><img src="img/tree.png" alt=""/>
-            </div>
-            <div class="main">
-              <div class="stickerBox">
-                <ul>
-                  <li><a class="option1 active" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
-                      <span class="txt">瓶瓶罐罐</span></a></li>
-                  <li><a class="option2" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
-                      <span class="txt">舊娃娃</span></a></li>
-                  <li><a class="option3" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
-                      <span class="txt">速食快餐</span></a></li>
-                  <li><a class="option4" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
-                      <span class="txt">摩托車</span></a></li>
-                  <li><a class="option5" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
-                      <span class="txt">彩妝品</span></a></li>
-                  <li><a class="option6" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
-                </ul>
-              </div>
-              <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
-            </div><a class="btn" href="#">我決定好了<span class="arrow"></span></a>
-          </div>
-          <div class="step2" style="display:none;">
-            <div class="main">
-              <div class="result-tt"><span>肌膚的</span><span><span class="blue underline"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span></span><span>秘密是</span></span></div>
-              <div class="resultBox">
-                <div class="topic">斷</div>
-                <div class="topic" style="display:none;">捨</div>
-                <div class="topic" style="display:none;">離</div>
-                <div class="detail">
-                  <div class="img result1"><img src="img/sticker/result1.png" alt=""/>
-                  </div>
-                  <div class="txt">妳懂得捨棄過多的想要，<br>留下真正需要，<br>					就像<span>freeplus零添加，<br></span>才是對自己真正好。 </div>
-                </div>
-                <div class="detail" style="display:none;">
-                  <div class="img result2"><img src="img/sticker/result2.png" alt=""/>
-                  </div>
-                  <div class="txt">妳擁有揮別過往的勇氣，<br>擁抱<span>零添加、低刺激的freeplus，<br></span>重啟純淨美肌。</div>
-                </div>
-                <div class="detail" style="display:none;">
-                  <div class="img result3"><img src="img/sticker/result3.png" alt=""/>
-                  </div>
-                  <div class="txt">妳願意斷開不好的事物，<br>如同<span>freeplus零添加香料色素，<br></span>才能展現生活的真實本色。 </div>
-                </div>
-                <div class="detail" style="display:none;">
-                  <div class="img result4"><img src="img/sticker/result4.png" alt=""/>
-                  </div>
-                  <div class="txt">踏上純淨之路的你，<br>選擇對地球溫柔，<br>就像<span>零添加的freeplus<br></span>給肌膚的溫柔呵護。</div>
-                </div>
-                <div class="detail" style="display:none;">
-                  <div class="img result5"><img src="img/sticker/result5.png" alt=""/>
-                  </div>
-                  <div class="txt">妳能適時中斷粉飾外表的偽裝，<br> 選擇<span>零添加的freeplus，<br></span>重拾自然少負擔的肌膚保養。 </div>
-                </div>
-                <div class="detail" style="display:none;">
-                  <div class="img result6"><img src="img/sticker/result6.png" alt=""/>
-                  </div>
-                  <div class="txt">妳理解捨棄與釋懷後，<br>才能迎接全新局面，<br>就讓<span>零添加的freeplus，</span><br>還你真美顏。</div>
-                </div><a class="btn-again" href="#">
-                  <div class="inner">
-                    <div class="content"><span class="icon"> <img src="asset/svg/again.svg" alt=""/></span><span>再玩一次</span></div>
-                  </div></a>
-              </div>
-              <div class="leaves"><img src="img/leaves.png" alt=""/>
-              </div>
-            </div>
-            <div class="btnBox"><a class="fb btn" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
-          </div>
-        </section>
-        <!--form-->
-        <section class="form">
-          <h2><span>\ 立即體驗<span class="underline blue"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span><span class="dot">生</span><span class="dot">活</span></span> /</span><span>讓肌膚重見轉機！</span></h2>
-          <div class="sub">即日起至2018年3月31日止<br>填妥資料即可參加抽獎！</div>
-          <div class="award">
-            <ul>
-              <li>
-                <div class="img">
-                  <div class="fir-prize"><img src="img/gift1.png" alt=""/>
-                  </div>
-                </div>
-                <div class="detail">
-                  <div class="tt underline blue">首獎</div>
-                  <div class="txt">freeplus溫和淨潤皂霜 & freeplus溫和淨潤卸粧霜正貨乙組，共5名</div>
-                </div>
-              </li>
-              <li>
-                <div class="img">
-                  <div class="normal-prize"><img src="img/gift2.png" alt=""/>
-                  </div>
-                </div>
-                <div class="detail">
-                  <div class="tt underline blue">普獎</div>
-                  <div class="txt">freeplus溫和淨潤皂霜7g (三日份) 試用包乙份，共1992名</div>
-                </div>
-              </li>
-            </ul>
-            <div class="deco"><img src="img/deco.png" alt=""/>
-            </div>
-          </div>
-          <div class="main">
-            <div class="cream"><img src="img/soap cream.png" alt=""/>
-            </div>
-            <div class="formBox">
-              <ul>
-                <li>
-                  <label class="blue">姓名</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                  <input class="warn" type="text" maxlength="5" placeholder="請填寫真實姓名">
-                </li>
-                <li>
-                  <label class="blue">電話</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                  <input type="tel" maxlength="15" placeholder="請輸入聯絡電話">
-                </li>
-              </ul>
-            </div>
-            <div class="formBox">
-              <label class="blue add-label">收件地址</label>
-              <ul>
-                <li class="selectStyle">
-                  <ul>
-                    <li>
-                      <select>
-                        <option value="0">請選擇縣市</option>
-                        <option value="1">台北市</option>
-                        <option value="2">新北市        </option>
-                      </select>
-                    </li> 
-                    <li>
-                      <select>
-                        <option value="0">請選擇區域</option>
-                        <option value="1">信義區</option>
-                        <option value="2">大安區</option>
-                      </select>
-                    </li>
-                  </ul>
-                </li>
-                <li class="add"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                  <input type="text" maxlength="30" placeholder="請輸入詳細地址">
-                </li>
-              </ul>
-            </div>
-            <div class="check">
-              <label class="label-radio">
-                <input class="radio" type="radio" name="foo"><span>本人同意<a href="#">活動辦法、個資法與隱私權</a>相關規定</span>
-              </label>
-            </div><a class="btn" href="#">確認送出<span class="arrow"></span></a>
-          </div>
-          <div class="light-bg"><img src="img/light.png" alt=""/>
-          </div>
-        </section>
-        <!-- about-->
-        <section>
-          <div class="featureBox">
-            <h2><span>\ 敏弱肌也<span class="underline blue"> <span class="dot">安</span><span class="dot">心</span></span> /</span></h2>
-            <h3>“ 零添加 <span class="cross">Ｘ </span>低刺激  呵護肌膚！ ”</h3>
-            <div class="feature blue">
-              <ul>
-                <li>
-                  <div class="inner"><span class="zero">零</span><span class="detail">添加<br>香料色素</span></div>
-                </li>
-                <li>
-                  <div class="inner"><span class="zero">零</span><span class="detail">添加<br>酒精</span></div>
-                </li>
-                <li>
-                  <div class="inner"><span class="zero">零</span><span class="detail">添加Paraben<br>防腐劑</span></div>
-                </li>
-              </ul>
-            </div>
-            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a class="btn" href="#">低刺激配方無藏私公開<span class="arrow"></span></a>
-          </div>
-          <div class="heBox">
-            <h2><span>\ 實現<span class="underline blue"> <span class="dot">高</span><span class="dot">保</span><span class="dot">水</span><span class="dot">力</span></span> /</span></h2>
-            <h3>“ 精選 6 種和漢保濕植萃 ”</h3>
-            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a class="btn" href="#">和漢植物的小故事<span class="arrow"></span></a>
-            <div class="he-bg"><img src="img/plant.png" alt=""/>
-            </div>
-          </div>
-        </section>
-        <!--product-->
-        <section class="productBox">
-          <div class="pro-kv">
-            <h2><span>\ 捨棄多餘，留下<span class="underline blue"> <span class="dot">精</span><span class="dot">華</span></span> /</span></h2>
-            <h3>“ 我們只給肌膚最需要的！ ”</h3>
-          </div>
-          <div class="product">
-            <div class="top">
-              <div class="proBox">
-                <div class="pro-img pro1"><img src="img/pro1.png" alt=""/>
-                </div>
-                <div class="sticker poabs"><img src="img/pro1-sticker.png" alt=""/>
-                </div>
-              </div>
-              <div class="detail">
-                <ul>
-                  <li class="blue">\經典人氣款/</li>
-                  <li>溫和淨潤皂霜</li>
-                  <li>“ 洗顏同時滋潤肌膚！ ”</li>
-                  <li><a href="#">了解更多 ＋</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="bottom">
-              <ul>
-                <li>輕輕搓揉就能產生豐盈綿密的泡沫！</li>
-                <li>弱酸性配方，能深入肌膚紋理去除髒污，溫和低刺激。</li>
-                <li>和漢植物保濕成分，洗後能保有絕佳的潤澤狀態。</li>
-              </ul>
-              <div class="img"><img src="img/cream1.png" alt=""/>
-              </div>
-            </div>
-            <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
-            </div>
-          </div>
-          <div class="product">
-            <div class="top">
-              <div class="detail">
-                <ul>
-                  <li class="blue">\方便的按壓式/ </li>
-                  <li>溫和淨潤洗顏泡沫</li>
-                  <li>“ 泡沫豐盈綿滑洗後超潤澤！ ”</li>
-                  <li><a href="#">了解更多 ＋</a></li>
-                </ul>
-              </div>
-              <div class="proBox">
-                <div class="pro-img pro2"><img src="img/pro2.png" alt=""/>
-                </div>
-              </div>
-            </div>
-            <div class="bottom">
-              <div class="img"><img src="img/cream2.png" alt=""/>
-              </div>
-              <ul>
-                <li>輕輕一壓就有細緻綿密的洗顏泡沫！</li>
-                <li>洗淨髒污的同時，和漢植物保濕成分能迅速淨潤肌膚。</li>
-                <li>豐盈泡沫能減輕過度摩擦帶來的刺激，讓洗臉過程成為一種享受！</li>
-              </ul>
-            </div>
-            <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
-            </div>
-          </div>
-        </section>
-        <!--shop-->
-        <section class="shop">
-          <div class="watsons">
-            <h2><span>\ freeplus 就在妳身邊！ /</span></h2>
-            <h3>“ 登台一週年，只在<span class="underline blue"> <span class="dot">屈</span><span class="dot">臣</span><span class="dot">氏</span></span>販售！ ”</h3>
-            <div class="img"><img src="img/watsons.png" alt=""/>
-            </div><a class="w-btn blue" href="#"><span>全台屈臣氏獨家販售！</span><span><span class="icon"><img src="asset/svg/pin.svg" alt=""/></span><span>查詢最近店點</span></span></a><a class="w-btn blue" href="#"><span>屈臣氏網路商城</span><span><span class="icon"><img src="asset/svg/cart.svg" alt=""/></span><span>搶先下單</span></span></a><a class="w-btn blue" href="#"><span>Yahoo! 超級商城也買得到！</span><span><span class="icon"><img src="asset/svg/shop.svg" alt=""/></span><span>查詢最近店點</span></span></a>
-          </div>
-          <div class="official">
-            <h2><span>\一起變得更好/</span></h2>
-            <h3>“ 零添加生活，<span class="underline blue"> <span class="dot">由</span><span class="dot">妳</span><span class="dot">啟</span><span class="dot">動</span></span>！ ”</h3>
-            <div class="img"><img src="img/beauty.png" alt=""/>
-            </div><a class="btn" href="#"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
-          </div>
-          <div class="txt">※此活動頁內的「零添加」文字，意指freeplus洗卸、保濕修護系列產品均無添加酒精、香料、色素、Paraben防腐劑。</div>
-          <div class="txt">© 2018 Taiwan Kanebo Cosmetics Co.,LTD. All Rights Reserved.</div>
-        </section>
-      </div>
-    </div>
-  </body>
+        <script src="js/index.js"></script>
+    </body>
 </html>

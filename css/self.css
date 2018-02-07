@@ -1,0 +1,106 @@
+/* vue use */
+[v-cloak]{
+    display: none;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to{
+    opacity: 0;
+}
+
+/* scrollreveal use*/
+.kv h1, .kv .kv-product, .bubbleWord, .bubbleImg, .intro .txt-fir, .intro .txt-sec, .intro .txt-thir{
+    visibility: hidden;
+}
+
+/* kv bubble use */
+/*.kv .mainBox .poabs{
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.kv .mainBox .poabs.isHide{
+    opacity: 0;
+    -webkit-transform: translate3d(0, 200px, 0);
+    transform: translate3d(0, 200px, 0);
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}*/
+.bubble{
+    position: absolute;
+    width: 50px;
+    top: 100%;
+    left: 10%;
+    opacity: 0;
+    z-index: -1;
+}
+.bubble.one{
+    width: 35px;
+    left: 5%;
+    animation: bubble 4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 1.5s;
+}
+.bubble.two{
+    width: 15px;
+    left: 17.5%;
+    animation: bubble 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 1.75s;
+}
+.bubble.three{
+    width: 55px;
+    left: 22.5%;
+    animation: bubble 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+.bubble.four{
+    width: 75px;
+    left: 30%;
+    animation: bubble 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+.bubble.five{
+    width: 35px;
+    left: 55%;
+    animation: bubble 4.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 2s;
+}
+.bubble.six{
+    width: 40px;
+    left: 65%;
+    animation: bubble 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 2s;
+}
+.bubble.seven{
+    width: 30px;
+    left: 76%;
+    animation: bubble 3.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 2s;
+}
+.bubble.eight{
+    width: 60px;
+    left: 85%;
+    animation: bubble 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    animation-delay: 2s;
+}
+@keyframes bubble{
+    0% {
+        top: 100%;
+        transform: translate3d(0, 0, 0);
+    }
+    33% {
+        transform: translate3d(15px, 0, 0);
+    }
+    40%{
+        opacity: .3;
+    }
+    66% {
+        transform: translate3d(-25px, 0, 0);
+        opacity: .3;
+    }
+    100% {
+        top: 0;
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+    }
+}
