@@ -1,0 +1,98 @@
+.rule {
+    background-color: #d0e9f6;
+    width: 100%;
+    padding-top: 95px;
+    padding-bottom: 60px;
+    @media screen and (max-width: 767px) {
+        padding-top: 60px;
+    }
+    h2 {
+        font-size: 3rem;
+        margin-top: 30px;
+        @media screen and (max-width: 767px) {
+            font-size: 7vw;
+        }
+        @media screen and (max-width: 374px) {
+            font-size: 8vw;
+        }
+    }
+    section {
+        width: 75%;
+        margin: 30px auto;
+        @media screen and (max-width: 767px) {
+            margin: 20px auto;
+            width: 85%;
+        }
+    }
+    .sub {
+        margin: 15px auto;
+        @extend %txt_justify;
+        line-height: 2;
+    }
+    .award {
+        width: 85%;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+        ul {
+            text-align: left;
+        }
+        li:first-child .detail {
+            padding-bottom: 29px;
+        }
+        .fir-prize,
+        .img {
+            width: 105px;
+            @media screen and (max-width: 767px) {
+                width: 80px;
+            }
+        }
+        .normal-prize {
+            width: 55px;
+            @media screen and (max-width: 767px) {
+                width: 40px;
+            }
+        }
+        .tt {
+            font-size: 2.4rem;
+            @media screen and (max-width: 767px) {
+                font-size: 5vw;
+            }
+            @media screen and (max-width: 374px) {
+                font-size: 5.5vw;
+            }
+        }
+        .txt {
+            font-size: 1.6rem;
+        }
+    }
+    .underline:after {
+        bottom: 7px;
+        height: 10px;
+    }
+}
+
+.notice {
+    li {
+        font-size: 1.6rem;
+        text-align: left;
+        margin: 10px auto;
+        position: relative;
+        padding-left: 23px;
+        line-height: 2;
+        @extend %txt_justify;
+        &:before {
+            content: "";
+            background: url(../asset/svg/dot.svg) no-repeat;
+            width: 15px;
+            height: 15px;
+            background-size: contain;
+            position: absolute;
+            left: 0;
+            top: 9px;
+            @media screen and (max-width: 767px) {
+                top: 8px;
+            }
+        }
+    }
+}

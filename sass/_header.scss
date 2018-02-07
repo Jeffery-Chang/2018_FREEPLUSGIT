@@ -1,0 +1,47 @@
+header {
+    width: 100%;
+    max-width: 768px;
+    height: 95px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom-width: 6px;
+    border-color: $blue;
+    border-style: solid;
+    position: fixed;
+    z-index: 8;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        height: 60px;
+        padding: 0 20px;
+        border-bottom-width: 3px;
+    }
+    @media screen and (max-width: 374px) {
+        height: 50px;
+        padding: 0 15px;
+    }
+}
+
+.logo {
+    width: 140px;
+    height: 40px;
+    @media screen and (max-width: 767px) {
+        width: 88px;
+        height: 25px;
+    }
+    @media screen and (max-width: 374px) {
+        width: 80px;
+        height: 23px;
+    }
+}
+
+.open {
+    background: transparent;
+    border: 0;
+    .logo {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

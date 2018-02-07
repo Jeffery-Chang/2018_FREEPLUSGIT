@@ -1,0 +1,53 @@
+.menuBox {
+    @extend %all-100;
+    background: $l-blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    @extend %flex-mid;
+    display: none;
+    ul {
+        width: 70%;
+        margin: auto;
+        position: relative;
+        &:after {
+            content: "";
+            background: url(../asset/svg/cir-w.svg) no-repeat;
+            width: 150px;
+            height: 150px;
+            display: block;
+            position: absolute;
+            right: 5%;
+            top: -3%;
+            z-index: -1;
+        }
+    }
+    li {
+        font-size: 2rem;
+        @extend %noto-s;
+        letter-spacing: 2px;
+        text-align: right;
+        margin: 20px 0;
+        @media screen and (max-width: 374px) {
+            margin: 10px 0;
+        }
+        a {
+            color: $gray;
+        }
+        .active {
+            color: $blue;
+        }
+    }
+    .pattern {
+        bottom: -15%;
+        left: -25%;
+    }
+}
+
+.menu-logo {
+    width: 25%;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+}

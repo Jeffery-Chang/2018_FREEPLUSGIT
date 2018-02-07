@@ -1,0 +1,17 @@
+<svg id="首獎" xmlns="http://www.w3.org/2000/svg" width="194.094" height="203.34" viewBox="0 0 194.094 203.34">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #00a7c1;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <path id="多邊形_6" data-name="多邊形 6" class="cls-1" d="M651.329,2347.89l-59.985,18.42-59.336-20.42-36.022-51.45,1.051-62.83,37.722-50.21,59.985-18.42,59.336,20.42,36.022,51.45-1.051,62.83Z" transform="translate(-496 -2162.97)"/>
+  <path id="多邊形_6-2" data-name="多邊形 6" class="cls-2" d="M648.089,2344.16l-56.867,17.46-56.252-19.36-34.15-48.77,1-59.57,35.761-47.6,56.868-17.46,56.251,19.36,34.15,48.77-1,59.57Z" transform="translate(-496 -2162.97)"/>
+</svg>

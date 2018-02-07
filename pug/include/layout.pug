@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        include head
+        // own style
+        block own_style
+            link(rel = 'stylesheet', href = '')
+    body
+        block trans
+            include trans
+        block lightbox
+        // content
+        .wrap
+            // header 
+            // add '.open'
+            header
+                a.logo(href="index.html") 
+                    img(src="../asset/svg/logo.svg", alt="logo")
+                // bur
+                block bur
+                    include bur
+                // M Menu
+            include menubox
+            .container
+                block content
+            
+
+

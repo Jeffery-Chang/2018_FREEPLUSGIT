@@ -1,0 +1,435 @@
+extends ./include/layout
+include ./include/mixin
+
+block lightbox
+	.popup(style="display:none")
+		.main
+			a.close(href="#")
+				+svg('del')
+			.sub 謝謝您的參與<br>中獎名單將於2018/03/31公佈
+			h4.blue ＼邀您搶先體驗！／<br>                    【freeplus泡泡體驗快閃活動】 
+			.sub 我的零添加主張，就從洗臉開始！ 
+			.sub 凡參加freeplus泡泡體驗， <br>即可獲得洗顏皂霜試用包及奶泡咖啡!
+			.sub-tt.blue  活動時間 
+			.timeBox
+				.time
+					ul 
+						li.date 3/2  
+						li 17:00-21:00
+				.time
+					ul 
+						li.date 3/3-3/4   
+						li 13:00-21:00
+
+			.sub-tt.blue  活動地點
+			.sub ATT 4 fun forever21前廣場
+		.bg
+block content
+	.btnBox-kv.poabs(style="display:none")
+		a.btn-game.bg-blue(href="#")
+			.inner
+				span.pro
+					+png('btn-pro')
+				span 測驗抽正貨
+				span.triBox
+					span.triangle
+	//kv
+	section.kv
+		h1.blue
+			span.font-s 只給肌膚需要的
+			span.main
+				span.f-logo
+					+svg('freeplus')
+				span 的零添加主張
+		.mainBox
+			.kv-product
+				+png('kv')
+			.bubbleBox
+				.bb1.poabs
+					.txt
+						span.zero 零
+						span.detail 添加<br>香料色素
+				.bb2.poabs
+					.txt
+						span.zero 零
+						span.detail 添加Paraben<br>防腐劑
+				.bb3.poabs
+					.txt
+						span.zero 零
+						span.detail 添加<br>酒精
+				.he1.poabs
+					+png('he1')
+				.he2.poabs
+					+png('he2')
+				.he3.poabs
+					+png('he3')
+				.he4.poabs
+					+png('he4')
+				.he5.poabs
+					+png('he5')
+				.he6.poabs
+					+png('he6')
+		
+		.scroll.blue scroll
+			span
+		.pattern.poabs
+			+svg('pattern')
+		.waterdrop.poabs
+		.blur.poabs
+			+png('blur')
+	//intro
+	section.intro
+		.txt-fir
+			span
+				span.inlineblock 零添加的
+				span.f-logo.inlineblock
+					+svg('freeplus')
+			span 堅持選用不易造成肌膚負擔的成份
+			span 只給肌膚需要的水潤呵護
+			span.lighthigh.blue “ 懂得捨棄，才能獲得嶄新的可能。”
+		.txt-sec
+			span 即刻開啟妳的
+			span.lighthigh.blue 
+				span.underline 零添加生活 !
+		.txt-thir
+			span \從敏感肌研究誕生/
+			span “ 從零開始，喚醒妳的水潤時刻 ”
+			.video
+				.embed-container
+					iframe(src='https://www.youtube.com/embed/x3a_h4NwEiQ' frameborder='0' allowfullscreen)
+		.cloud1.poabs
+			+png('cloud1')
+		.cloud2.poabs
+			+png('cloud2')
+		.cloud3.poabs
+			+png('cloud3')
+	//game
+	section.game
+		.step1
+			.game-tt.blue
+				span 零添加主張
+				span
+					sapn.underline 捨/得測驗
+				span.sub 學會捨棄，才能讓生活別具意義
+			.tree.poabs
+				+png('tree')
+			.main
+				.stickerBox
+					ul
+						+sticker('#','sticker/option1.png','瓶瓶罐罐').option1.active
+						+sticker('#','sticker/option2.png','舊娃娃').option2
+						+sticker('#','sticker/option3.png','速食快餐').option3
+						+sticker('#','sticker/option4.png','摩托車').option4
+						+sticker('#','sticker/option5.png','彩妝品').option5
+						li
+							a.option6(href="#")
+								span.img
+									img(src="img/sticker/option6.png", alt="")
+								span.txt 和前男友的
+									br
+									| 合照
+				.game-sub 請點擊一項
+					span.blue 最想捨棄
+					| 的東西<br>獲取妳的零添加秘密 
+			a.btn(href="#") 我決定好了
+				span.arrow
+		.step2(style="display:none")
+			.main
+				.result-tt
+					span 肌膚的
+					span
+						span.blue.underline 
+							span.dot 零
+							span.dot 添
+							span.dot 加
+						span 秘密是
+				.resultBox
+					.topic 斷
+					.topic(style="display:none") 捨
+					.topic(style="display:none") 離
+					.detail
+						.img.result1
+							+png('sticker/result1')
+						.txt 妳懂得捨棄過多的想要，<br>留下真正需要，<br>					就像
+							span freeplus零添加，<br>
+							| 才是對自己真正好。 
+					.detail(style="display:none")
+						.img.result2
+							+png('sticker/result2')
+						.txt 妳擁有揮別過往的勇氣，<br>擁抱
+							span 零添加、低刺激的freeplus，<br>
+							| 重啟純淨美肌。
+					.detail(style="display:none")
+						.img.result3
+							+png('sticker/result3')
+						.txt 妳願意斷開不好的事物，<br>如同
+							span freeplus零添加香料色素，<br>
+							| 才能展現生活的真實本色。 
+					.detail(style="display:none")
+						.img.result4
+							+png('sticker/result4')
+						.txt 踏上純淨之路的你，<br>選擇對地球溫柔，<br>就像
+							span 零添加的freeplus<br>
+							| 給肌膚的溫柔呵護。
+					.detail(style="display:none")
+						.img.result5
+							+png('sticker/result5')
+						.txt 妳能適時中斷粉飾外表的偽裝，<br> 選擇
+							span 零添加的freeplus，<br>
+							| 重拾自然少負擔的肌膚保養。 
+					.detail(style="display:none")
+						.img.result6
+							+png('sticker/result6')
+						.txt 妳理解捨棄與釋懷後，<br>才能迎接全新局面，<br>就讓
+							span 零添加的freeplus，
+							| <br>還你真美顏。
+					a.btn-again(href="#")
+						.inner
+							.content
+								span.icon 
+									+svg('again')
+								span 再玩一次
+				.leaves
+					+png('leaves')
+			.btnBox
+				a.fb.btn(href="#")
+					span.icon
+						+svg('fb')
+					span 分享零添加秘密
+				a.go.btn(href="#")
+					span.product
+						+png('btn-game-pro')
+					span 填單抽正貨
+	//form
+	section.form
+		h2
+			span \ 立即體驗
+				span.underline.blue 
+					span.dot 零
+					span.dot 添
+					span.dot 加
+					span.dot 生
+					span.dot 活
+				|  /
+			span 讓肌膚重見轉機！
+		.sub 即日起至2018年3月31日止<br>填妥資料即可參加抽獎！
+		.award
+			ul
+				li
+					.img
+						.fir-prize
+							+png('gift1')
+					.detail
+						.tt.underline.blue 首獎
+						.txt freeplus溫和淨潤皂霜 & freeplus溫和淨潤卸粧霜正貨乙組，共5名
+				li
+					.img
+						.normal-prize
+							+png('gift2')
+					.detail
+						.tt.underline.blue 普獎
+						.txt freeplus溫和淨潤皂霜7g (三日份) 試用包乙份，共1992名
+			.deco
+				+png('deco')
+		.main
+			.cream
+				+png('soap cream')
+			.formBox
+				ul
+					li
+						label.blue 姓名
+						a.del_pos(href="#")
+							+svg('del')
+						input.warn(type='text', maxlength='5', placeholder='請填寫真實姓名')
+					li
+						label.blue 電話
+						a.del_pos(href="#")
+							+svg('del')
+						input(type='tel', maxlength='15', placeholder='請輸入聯絡電話')
+			.formBox
+				label.blue.add-label 收件地址
+				ul
+					li.selectStyle
+						ul
+							li
+								select
+									option(value='0') 請選擇縣市
+									option(value='1') 台北市
+									option(value='2') 新北市        
+							| 
+							li
+								select
+									option(value='0') 請選擇區域
+									option(value='1') 信義區
+									option(value='2') 大安區
+					li.add
+						a.del_pos(href="#")
+							+svg('del')
+						input(type='text', maxlength='30', placeholder='請輸入詳細地址')
+			.check
+				label.label-radio
+					input.radio(type="radio" name="foo")
+					span 本人同意
+						a(href="#") 活動辦法、個資法與隱私權
+						| 相關規定
+			a.btn(href="#") 確認送出
+				span.arrow
+		.light-bg
+			+png('light')
+	// about
+	section
+		.featureBox
+			h2
+				span \ 敏弱肌也
+					span.underline.blue 
+						span.dot 安
+						span.dot 心
+					|  /
+			h3 “ 零添加 
+				span.cross Ｘ 
+				| 低刺激  呵護肌膚！ ”
+			.feature.blue
+				ul
+					li
+						.inner
+							span.zero 零
+							span.detail 添加<br>香料色素
+					li
+						.inner
+							span.zero 零
+							span.detail 添加<br>酒精
+					li
+						.inner
+							span.zero 零
+							span.detail 添加Paraben<br>防腐劑
+			.sub 選用低刺激配方，不易造成肌膚負擔！
+			a.btn(href="#") 低刺激配方無藏私公開
+				span.arrow
+		.heBox
+			h2
+				span \ 實現
+					span.underline.blue 
+						span.dot 高
+						span.dot 保
+						span.dot 水
+						span.dot 力
+					|  /
+			h3 “ 精選 6 種和漢保濕植萃 ”
+			.sub 添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！
+			a.btn(href="#") 和漢植物的小故事
+				span.arrow
+			.he-bg
+				+png('plant')
+	//product
+	section.productBox
+		.pro-kv
+			h2
+				span \ 捨棄多餘，留下
+					span.underline.blue 
+						span.dot 精
+						span.dot 華
+					|  /
+			h3 “ 我們只給肌膚最需要的！ ”
+		.product
+			.top
+				.proBox
+					.pro-img.pro1
+						+png('pro1')
+					.sticker.poabs
+						+png('pro1-sticker')
+				.detail
+					ul
+						li.blue \經典人氣款/
+						li 溫和淨潤皂霜
+						li “ 洗顏同時滋潤肌膚！ ”
+						li
+							a(href="#") 了解更多 ＋
+			.bottom
+				ul
+					li 輕輕搓揉就能產生豐盈綿密的泡沫！
+					li 弱酸性配方，能深入肌膚紋理去除髒污，溫和低刺激。
+					li 和漢植物保濕成分，洗後能保有絕佳的潤澤狀態。
+				.img
+					+png('cream1')
+			.pattern.poabs
+				+svg('pattern')
+		.product
+			.top
+				.detail
+					ul
+						li.blue \方便的按壓式/ 
+						li 溫和淨潤洗顏泡沫
+						li “ 泡沫豐盈綿滑洗後超潤澤！ ”
+						li
+							a(href="#") 了解更多 ＋
+				.proBox
+					.pro-img.pro2
+						+png('pro2')
+			.bottom
+				.img
+					+png('cream2')
+				ul
+					li 輕輕一壓就有細緻綿密的洗顏泡沫！
+					li 洗淨髒污的同時，和漢植物保濕成分能迅速淨潤肌膚。
+					li 豐盈泡沫能減輕過度摩擦帶來的刺激，讓洗臉過程成為一種享受！
+			.pattern.poabs
+				+svg('pattern')
+	//shop
+	section.shop
+		.watsons
+			h2
+				span \ freeplus 就在妳身邊！ /
+			h3 “ 登台一週年，只在
+				span.underline.blue 
+						span.dot 屈
+						span.dot 臣
+						span.dot 氏
+				| 販售！ ”
+			.img
+				+png('watsons')
+			a.w-btn.blue(href="#")
+				span 全台屈臣氏獨家販售！
+				span
+					span.icon
+						+svg('pin')
+					span 查詢最近店點
+			a.w-btn.blue(href="#")
+				span 屈臣氏網路商城
+				span
+					span.icon
+						+svg('cart')
+					span 搶先下單
+			a.w-btn.blue(href="#")
+				span Yahoo! 超級商城也買得到！
+				span
+					span.icon
+						+svg('shop')
+					span 查詢最近店點
+		.official
+			h2
+				span \一起變得更好/
+			h3 “ 零添加生活，
+				span.underline.blue 
+						span.dot 由
+						span.dot 妳
+						span.dot 啟
+						span.dot 動
+				| ！ ”
+			.img
+				+png('beauty')
+			a.btn(href="#") 
+				span 前往 freeplus 官方網站
+				span 了解更多 +
+		.txt ※此活動頁內的「零添加」文字，意指freeplus洗卸、保濕修護系列產品均無添加酒精、香料、色素、Paraben防腐劑。
+		.txt © 2018 Taiwan Kanebo Cosmetics Co.,LTD. All Rights Reserved.
+
+				
+
+
+
+
+
+
+		
+
+
