@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta http - equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>freeplus的零添加主張</title>
         <!-- facebook share-->
         <meta property="og:type" content="website">
@@ -11,7 +12,6 @@
         <meta property="og:image" content="">
         <meta property="og:site_name" content="">
         <meta property="og:url" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon-->
         <link rel="icon" href="img/favicon.ico">
         <!-- css style-->
@@ -20,13 +20,15 @@
         <script src="js/vendor/html5shiv.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
         <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+        <script src="js/vendor/tw-city-selector.min.js"></script>
         <script src="js/vendor/isMobile.min.js"></script>
         <script src="js/vendor/ch.min.js"></script>
         <script src="js/vendor/ga.js"></script>
         <script src="https://use.typekit.net/qcf8qyo.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
         <!-- own style-->
-        <link rel="stylesheet" href="css/self.css">
+        <link rel="stylesheet" href="bundle/self.css">
     </head>
     <body>
         <div id="indexPage" v-cloak>
@@ -43,18 +45,16 @@
                 </div>
             </div>
             <transition name="fade">
-                <div class="popup" style="display:none;">
-                    <div class="main form-check"><a class="close" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                        <p>請輸入真實姓名</p>
-                        <p>請輸入真實姓名</p>
-                        <p>請同意相關規定</p>
+                <div class="popup" v-show="checkFG">
+                    <div class="main form-check"><a class="close" @click.prevent="checkFG = false" href=""><img src="asset/svg/del.svg" alt=""/></a>
+                        <p v-for="(item, $index) in chkmsg" v-text="item"></p>
                     </div>
                     <div class="bg"></div>
                 </div>
             </transition>
             <transition name="fade">
                 <div class="popup" v-show="doneFG">
-                    <div class="main"><a class="close" @click.prevent.self href=""><img @click="doneFG = false" src="asset/svg/del.svg" alt=""/></a>
+                    <div class="main"><a class="close" @click.prevent="doneFG = false" href=""><img src="asset/svg/del.svg" alt=""/></a>
                         <div class="sub">謝謝您的參與<br>中獎名單將於2018/03/31公佈</div>
                         <h4 class="blue">＼邀您搶先體驗！／<br>                    【freeplus泡泡體驗快閃活動】 </h4>
                         <div class="sub">我的零添加主張，就從洗臉開始！ </div>
@@ -86,7 +86,7 @@
                 <!-- add '.open'-->
                 <header :class="{ 'open' : menuFG }"><a class="logo" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
                     <!-- bur-->
-                    <div class="burBox" @click="menuFG = !menuFG"><a class="bur" :class="{ 'active' : menuFG }" href="" @click.prevent.self><span></span></a></div>
+                    <div class="burBox" @click.prevent.stop="menuFG = !menuFG"><a class="bur" :class="{ 'active' : menuFG }" href=""><span></span></a></div>
                     <!-- M Menu-->
                 </header>
                 <transition name="fade">
@@ -97,8 +97,8 @@
                             <li><a @click.prevent.self="scrollMenu('game');" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
                             <li><a @click.prevent.self="scrollMenu('about');" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
                             <li><a @click.prevent.self="scrollMenu('productBox');" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a href="#">中獎名單</a></li>
-                            <li><a @click.prevent.self="actFG = true" href="#">活動辦法</a></li>
+                            <li><a @click.prevent.self href="#" v-if="false">中獎名單</a></li>
+                            <li><a @click="menuFG = false" href="rule.html" target="_blank">活動辦法</a></li>
                         </ul><a class="menu-logo poabs" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
                         </div>
@@ -106,7 +106,7 @@
                 </transition>
                 <div class="container">
                     <transition name="fade">
-                        <div v-show="goGameFG" class="btnBox-kv poabs" @click="scrollMenu('game', 95);"><a class="btn-game bg-blue" @click.prevent.self href="#">
+                        <div v-show="goGameFG" class="btnBox-kv poabs" @click.prevent.stop="scrollMenu('game', 95);"><a class="btn-game bg-blue" href="#">
                             <div class="inner"><span class="pro"><img src="img/btn-pro.png" alt=""/></span><span>測驗抽正貨</span><span class="triBox"><span class="triangle"></span></span></div></a></div>
                     </transition>
                     <!--kv-->
@@ -159,7 +159,7 @@
                         <div class="txt-thir"><span>\從敏感肌研究誕生/</span><span>“ 從零開始，喚醒妳的水潤時刻 ”</span>
                             <div class="video">
                                 <div class="embed-container">
-                                    <iframe src="https://www.youtube.com/embed/x3a_h4NwEiQ" frameborder="0" allowfullscreen></iframe>
+                                    <iframe src="https://www.youtube.com/embed/6cOpMAlR4yk" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -172,76 +172,84 @@
                     </section>
                     <!--game-->
                     <section class="game">
-                        <div class="step1">
-                            <div class="game-tt blue"><span>零添加主張</span><span>
-                                <span class="underline">捨/得測驗</span></span><span class="sub">學會捨棄，才能讓生活別具意義</span></div>
-                            <div class="tree poabs"><img src="img/tree.png" alt=""/>
+                        <transition name="fade">
+                            <div class="step1" v-show="gameStep == 0">
+                                <div class="leaf leaf01"></div>
+                                <div class="leaf leaf02"></div>
+                                <div class="leaf leaf03"></div>
+                                <div class="game-tt blue"><span>零添加主張</span><span>
+                                    <span class="underline">捨/得測驗</span></span><span class="sub">學會捨棄，才能讓生活別具意義</span></div>
+                                <div class="tree poabs"><img src="img/tree.png" alt=""/>
+                                </div>
+                                <div class="main">
+                                    <div class="stickerBox">
+                                        <ul>
+                                            <!-- a.active -->
+                                            <li @click.prevent.stop="choosen = 0"><a class="option1" :class="{ 'active' : choosen == 0 }" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
+                                                <span class="txt">瓶瓶罐罐</span></a></li>
+                                            <li @click.prevent.stop="choosen = 1"><a class="option2" :class="{ 'active' : choosen == 1 }" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
+                                                <span class="txt">舊娃娃</span></a></li>
+                                            <li @click.prevent.stop="choosen = 2"><a class="option3" :class="{ 'active' : choosen == 2 }" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
+                                                <span class="txt">速食快餐</span></a></li>
+                                            <li @click.prevent.stop="choosen = 3"><a class="option4" :class="{ 'active' : choosen == 3 }" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
+                                                <span class="txt">摩托車</span></a></li>
+                                            <li @click.prevent.stop="choosen = 4"><a class="option5" :class="{ 'active' : choosen == 4 }" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
+                                                <span class="txt">彩妝品</span></a></li>
+                                            <li @click.prevent.stop="choosen = 5"><a class="option6" :class="{ 'active' : choosen == 5 }" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
+                                </div><a class="btn" @click.prevent="changeStep(1, 'game')" href="#">我決定好了<span class="arrow"></span></a>
                             </div>
-                            <div class="main">
-                                <div class="stickerBox">
-                                    <ul>
-                                        <li><a class="option1 active" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
-                                            <span class="txt">瓶瓶罐罐</span></a></li>
-                                        <li><a class="option2" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
-                                            <span class="txt">舊娃娃</span></a></li>
-                                        <li><a class="option3" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
-                                            <span class="txt">速食快餐</span></a></li>
-                                        <li><a class="option4" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
-                                            <span class="txt">摩托車</span></a></li>
-                                        <li><a class="option5" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
-                                            <span class="txt">彩妝品</span></a></li>
-                                        <li><a class="option6" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
-                                    </ul>
+                        </transition>
+                        <transition name="fade">
+                            <div class="step2" v-show="gameStep == 1">
+                                <div class="main">
+                                    <div class="result-tt"><span>肌膚的</span><span><span class="blue underline"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span></span><span>秘密是</span></span></div>
+                                    <div class="resultBox">
+                                        <div class="topic" v-show="choosen == 0 || choosen == 3">斷</div>
+                                        <div class="topic" v-show="choosen == 1 || choosen == 4">捨</div>
+                                        <div class="topic" v-show="choosen == 2 || choosen == 5">離</div>
+                                        <div class="detail" v-show="choosen == 0">
+                                            <div class="img result1"><img src="img/sticker/result1.png" alt=""/>
+                                            </div>
+                                            <div class="txt">妳懂得捨棄過多的想要，<br>留下真正需要，<br>就像<span>freeplus零添加，<br></span>才是對自己真正好。 </div>
+                                        </div>
+                                        <div class="detail" v-show="choosen == 1">
+                                            <div class="img result2"><img src="img/sticker/result2.png" alt=""/>
+                                            </div>
+                                            <div class="txt">妳擁有揮別過往的勇氣，<br>擁抱<span>零添加、低刺激的freeplus，<br></span>重啟純淨美肌。</div>
+                                        </div>
+                                        <div class="detail" v-show="choosen == 2">
+                                            <div class="img result3"><img src="img/sticker/result3.png" alt=""/>
+                                            </div>
+                                            <div class="txt">妳願意斷開不好的事物，<br>如同<span>freeplus零添加香料色素，<br></span>才能展現生活的真實本色。 </div>
+                                        </div>
+                                        <div class="detail" v-show="choosen == 3">
+                                            <div class="img result4"><img src="img/sticker/result4.png" alt=""/>
+                                            </div>
+                                            <div class="txt">踏上純淨之路的你，<br>選擇對地球溫柔，<br>就像<span>零添加的freeplus<br></span>給肌膚的溫柔呵護。</div>
+                                        </div>
+                                        <div class="detail" v-show="choosen == 4">
+                                            <div class="img result5"><img src="img/sticker/result5.png" alt=""/>
+                                            </div>
+                                            <div class="txt">妳能適時中斷粉飾外表的偽裝，<br> 選擇<span>零添加的freeplus，<br></span>重拾自然少負擔的肌膚保養。 </div>
+                                        </div>
+                                        <div class="detail" v-show="choosen == 5">
+                                            <div class="img result6"><img src="img/sticker/result6.png" alt=""/>
+                                            </div>
+                                            <div class="txt">妳理解捨棄與釋懷後，<br>才能迎接全新局面，<br>就讓<span>零添加的freeplus，</span><br>還你真美顏。</div>
+                                        </div><a class="btn-again" @click.prevent="changeStep(0, 'game')" href="#">
+                                        <div class="inner">
+                                            <div class="content"><span class="icon"> <img src="asset/svg/again.svg" alt=""/></span><span>再玩一次</span></div>
+                                        </div></a>
+                                    </div>
+                                    <div class="leaves"><img src="img/leaves.png" alt=""/>
+                                    </div>
                                 </div>
-                                <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
-                            </div><a class="btn" href="#">我決定好了<span class="arrow"></span></a>
-                        </div>
-                        <div class="step2" style="display:none;">
-                            <div class="main">
-                                <div class="result-tt"><span>肌膚的</span><span><span class="blue underline"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span></span><span>秘密是</span></span></div>
-                                <div class="resultBox">
-                                    <div class="topic">斷</div>
-                                    <div class="topic" style="display:none;">捨</div>
-                                    <div class="topic" style="display:none;">離</div>
-                                    <div class="detail">
-                                        <div class="img result1"><img src="img/sticker/result1.png" alt=""/>
-                                        </div>
-                                        <div class="txt">妳懂得捨棄過多的想要，<br>留下真正需要，<br>就像<span>freeplus零添加，<br></span>才是對自己真正好。 </div>
-                                    </div>
-                                    <div class="detail" style="display:none;">
-                                        <div class="img result2"><img src="img/sticker/result2.png" alt=""/>
-                                        </div>
-                                        <div class="txt">妳擁有揮別過往的勇氣，<br>擁抱<span>零添加、低刺激的freeplus，<br></span>重啟純淨美肌。</div>
-                                    </div>
-                                    <div class="detail" style="display:none;">
-                                        <div class="img result3"><img src="img/sticker/result3.png" alt=""/>
-                                        </div>
-                                        <div class="txt">妳願意斷開不好的事物，<br>如同<span>freeplus零添加香料色素，<br></span>才能展現生活的真實本色。 </div>
-                                    </div>
-                                    <div class="detail" style="display:none;">
-                                        <div class="img result4"><img src="img/sticker/result4.png" alt=""/>
-                                        </div>
-                                        <div class="txt">踏上純淨之路的你，<br>選擇對地球溫柔，<br>就像<span>零添加的freeplus<br></span>給肌膚的溫柔呵護。</div>
-                                    </div>
-                                    <div class="detail" style="display:none;">
-                                        <div class="img result5"><img src="img/sticker/result5.png" alt=""/>
-                                        </div>
-                                        <div class="txt">妳能適時中斷粉飾外表的偽裝，<br> 選擇<span>零添加的freeplus，<br></span>重拾自然少負擔的肌膚保養。 </div>
-                                    </div>
-                                    <div class="detail" style="display:none;">
-                                        <div class="img result6"><img src="img/sticker/result6.png" alt=""/>
-                                        </div>
-                                        <div class="txt">妳理解捨棄與釋懷後，<br>才能迎接全新局面，<br>就讓<span>零添加的freeplus，</span><br>還你真美顏。</div>
-                                    </div><a class="btn-again" href="#">
-                                    <div class="inner">
-                                        <div class="content"><span class="icon"> <img src="asset/svg/again.svg" alt=""/></span><span>再玩一次</span></div>
-                                    </div></a>
-                                </div>
-                                <div class="leaves"><img src="img/leaves.png" alt=""/>
-                                </div>
+                                <div class="btnBox"><a class="fb btn" @click.prevent="shareFB('?back=1');" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" @click.prevent="changeStep(2, 'form')" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
                             </div>
-                            <div class="btnBox"><a class="fb btn" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
-                        </div>
+                        </transition>
                     </section>
                     <!--form-->
                     <section class="form">
@@ -279,13 +287,21 @@
                             <div class="formBox">
                                 <ul>
                                     <!-- li.warn -->
-                                    <li>
+                                    <li :class="{ 'warn' : pass(1) }">
                                         <label class="blue">姓名</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input  type="text" maxlength="5" placeholder="請填寫真實姓名">
+                                        <input  type="text" maxlength="5" placeholder="請填寫真實姓名" v-model="formName" @focus="avoidAnriod">
                                     </li>
-                                    <li>
+                                    <li :class="{ 'warn' : pass(2) }">
                                         <label class="blue">電話</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input type="tel" maxlength="15" placeholder="請輸入聯絡電話">
+                                        <input type="tel" maxlength="10" placeholder="請輸入聯絡電話" v-model="formPhone" @focus="avoidAnriod">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="formBox">
+                                <label class="blue add-label">E-MAIL</label>
+                                <ul>
+                                    <li class="mail" :class="{ 'warn' : pass(3) }"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <input type="email" maxlength="50" placeholder="避免使用易漏信之免費信箱" v-model="formEmail" @focus="avoidAnriod">
                                     </li>
                                 </ul>
                             </div>
@@ -293,34 +309,26 @@
                                 <label class="blue add-label">收件地址</label>
                                 <ul>
                                     <li class="selectStyle">
-                                        <ul>
-                                            <li>
-                                                <select>
-                                                    <option value="0">請選擇縣市</option>
-                                                    <option value="1">台北市</option>
-                                                    <option value="2">新北市</option>
-                                                </select>
+                                        <ul class="citySelector">
+                                            <li :class="{ 'warn' : pass(4) }">
+                                                <select class="formCity" :style="{ color : cityColor }" @change="setValue('formCity');"></select>
                                             </li> 
-                                            <li>
-                                                <select>
-                                                    <option value="0">請選擇區域</option>
-                                                    <option value="1">信義區</option>
-                                                    <option value="2">大安區</option>
-                                                </select>
+                                            <li :class="{ 'warn' : pass(5) }">
+                                                <select class="formDistrict" :style="{ color : disColor }" @change="setValue('formDistrict');"></select>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="add"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input type="text" maxlength="30" placeholder="請輸入詳細地址">
+                                    <li class="add" :class="{ 'warn' : pass(6) }"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <input type="text" maxlength="50" placeholder="請輸入詳細地址" v-model="formAddress" @focus="avoidAnriod">
                                     </li>
                                 </ul>
                             </div>
                             <!--- div.warn-check -->
-                            <div class="check">
+                            <div class="check" :class="{ 'warn-check' : pass(7) }">
                                 <label class="label-radio">
-                                    <input class="radio" type="radio" name="foo"><span>本人同意<a href="#">活動辦法、個資法與隱私權</a>相關規定</span>
+                                    <input class="radio" type="radio" name="foo"><span>本人同意<a href="rule.html" target="_blank">活動辦法、個資法與隱私權</a>相關規定</span>
                                 </label>
-                            </div><a class="btn" href="#">確認送出<span class="arrow"></span></a>
+                            </div><a class="btn" @click.prevent="checkData" href="#">確認送出<span class="arrow"></span></a>
                         </div>
                         <div class="light-bg"><img src="img/light.png" alt=""/>
                         </div>
@@ -343,12 +351,12 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a class="btn" href="#">低刺激配方無藏私公開<span class="arrow"></span></a>
+                            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a class="btn" href="https://goo.gl/Pfacba" target="_blank">低刺激配方無藏私公開<span class="arrow"></span></a>
                         </div>
                         <div class="heBox">
                             <h2><span>\ 實現<span class="underline blue"> <span class="dot">高</span><span class="dot">保</span><span class="dot">水</span><span class="dot">力</span></span> /</span></h2>
                             <h3>“ 精選 6 種和漢保濕植萃 ”</h3>
-                            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a class="btn" href="#">和漢植物的小故事<span class="arrow"></span></a>
+                            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a class="btn" href="https://goo.gl/k8wrDv" target="_blank">和漢植物的小故事<span class="arrow"></span></a>
                             <div class="he-bg"><img src="img/plant.png" alt=""/>
                             </div>
                         </div>
@@ -359,7 +367,7 @@
                             <h2><span>\ 捨棄多餘，留下<span class="underline blue"> <span class="dot">精</span><span class="dot">華</span></span> /</span></h2>
                             <h3>“ 我們只給肌膚最需要的！ ”</h3>
                         </div>
-                        <div class="product">
+                        <div class="product one">
                             <div class="top">
                                 <div class="proBox">
                                     <div class="pro-img pro1"><img src="img/pro1.png" alt=""/>
@@ -372,7 +380,7 @@
                                         <li class="blue">\經典人氣款/</li>
                                         <li>溫和淨潤皂霜</li>
                                         <li>“ 洗顏同時滋潤肌膚！ ”</li>
-                                        <li><a href="#">了解更多 ＋</a></li>
+                                        <li><a href="https://goo.gl/XFKJdx" target="_blank">了解更多 ＋</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -388,14 +396,14 @@
                             <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
                             </div>
                         </div>
-                        <div class="product">
+                        <div class="product two">
                             <div class="top">
                                 <div class="detail">
                                     <ul>
                                         <li class="blue">\方便的按壓式/ </li>
                                         <li>溫和淨潤洗顏泡沫</li>
                                         <li>“ 泡沫豐盈綿滑洗後超潤澤！ ”</li>
-                                        <li><a href="#">了解更多 ＋</a></li>
+                                        <li><a href="https://goo.gl/Wwrb86" target="_blank">了解更多 ＋</a></li>
                                     </ul>
                                 </div>
                                 <div class="proBox">
@@ -421,14 +429,21 @@
                         <div class="watsons">
                             <h2><span>\ freeplus 就在妳身邊！ /</span></h2>
                             <h3>“ 登台一週年，只在<span class="underline blue"> <span class="dot">屈</span><span class="dot">臣</span><span class="dot">氏</span></span>販售！ ”</h3>
-                            <div class="img"><img src="img/watsons.png" alt=""/>
-                            </div><a class="w-btn blue" href="#"><span>全台屈臣氏獨家販售！</span><span><span class="icon"><img src="asset/svg/pin.svg" alt=""/></span><span>查詢最近店點</span></span></a><a class="w-btn blue" href="#"><span>屈臣氏網路商城</span><span><span class="icon"><img src="asset/svg/cart.svg" alt=""/></span><span>搶先下單</span></span></a><a class="w-btn blue" href="#"><span>Yahoo! 超級商城也買得到！</span><span><span class="icon"><img src="asset/svg/shop.svg" alt=""/></span><span>查詢最近店點</span></span></a>
+                            <div class="img"><img src="img/watsons.png" alt=""/></div>
+                            <a class="w-btn blue" href="https://goo.gl/EENJh6" target="_blank">
+                                <span>全台屈臣氏獨家販售！</span><span><span class="icon"><img src="asset/svg/pin.svg" alt=""/></span><span>查詢最近店點</span></span>
+                            </a>
+                            <a class="w-btn blue" href="https://goo.gl/YgaWbE" target="_blank">
+                                <span>屈臣氏網路商城</span><span><span class="icon"><img src="asset/svg/cart.svg" alt=""/></span><span>搶先下單</span></span></a>
+                            <a class="w-btn blue" href="https://goo.gl/SQ6pGz" target="_blank">
+                                <span>Yahoo! 超級商城也買得到！</span><span><span class="icon"><img src="asset/svg/shop.svg" alt=""/></span><span>查詢最近店點</span></span>
+                            </a>
                         </div>
                         <div class="official">
                             <h2><span>\一起變得更好/</span></h2>
                             <h3>“ 零添加生活，<span class="underline blue"> <span class="dot">由</span><span class="dot">妳</span><span class="dot">啟</span><span class="dot">動</span></span>！ ”</h3>
                             <div class="img"><img src="img/beauty.png" alt=""/>
-                            </div><a class="btn" href="#"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
+                            </div><a class="btn" href="https://goo.gl/dwLQEm" target="_blank"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
                         </div>
                         <div class="txt">※此活動頁內的「零添加」文字，意指freeplus洗卸、保濕修護系列產品均無添加酒精、香料、色素、Paraben防腐劑。</div>
                         <div class="txt">© 2018 Taiwan Kanebo Cosmetics Co.,LTD. All Rights Reserved.</div>
@@ -436,6 +451,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/index.js"></script>
+        <script src="bundle/index.js"></script>
     </body>
 </html>

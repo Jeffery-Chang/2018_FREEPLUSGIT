@@ -9,26 +9,25 @@
     opacity: 0;
 }
 
+/* fixed scroll use */
+body, html{
+    height: auto;
+}
+section.kv{
+    height: 100vh;
+}
+
 /* scrollreveal use*/
 .kv h1, .kv .kv-product, .bubbleWord, .bubbleImg, .intro .txt-fir, .intro .txt-sec, .intro .txt-thir{
     visibility: hidden;
 }
 
-/* kv bubble use */
-/*.kv .mainBox .poabs{
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: all 1s ease;
-    transition: all 1s ease;
+/* fixed btn use */
+.btn-game .triBox.rotate{
+    transform: rotate(180deg);
 }
-.kv .mainBox .poabs.isHide{
-    opacity: 0;
-    -webkit-transform: translate3d(0, 200px, 0);
-    transform: translate3d(0, 200px, 0);
-    -webkit-transition: all 1s ease;
-    transition: all 1s ease;
-}*/
+
+/* kv bubble use */
 .bubble{
     position: absolute;
     width: 50px;
@@ -103,4 +102,149 @@
         transform: translate3d(0, 0, 0);
         opacity: 0;
     }
+}
+
+/* game leaf use */
+.game .tree.poabs{
+    z-index: 2;
+}
+.game .leaf{
+    position: absolute;
+    top: -75px;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    transform: scale(.55);
+    z-index: 1;
+}
+.game .leaf01{
+    left: 80%;
+    background: url(../img/leaf01.png) no-repeat left center;
+    animation: leaf01 5s steps(30) infinite;
+    animation-delay: .25s; 
+    transform: scale(.475);
+}
+.game .leaf02{
+    left: 85%;
+    background: url(../img/leaf02.png) no-repeat left center;
+    animation: leaf02 4s steps(30) infinite;
+    animation-delay: 4s; 
+    transform: scale(.35);
+}
+.game .leaf03{
+    left: 90%;
+    background: url(../img/leaf01.png) no-repeat left center;
+    animation: leaf03 4.5s steps(30) infinite;
+    animation-delay: 1s; 
+}
+@media screen and (max-width: 767px) {
+    .game .leaf{
+        transform: scale(.4);
+        top: -50px;
+    }
+    .game .leaf01{
+        left: 70%;
+        transform: scale(.375);
+    }
+    .game .leaf02{
+        left: 72.5%;
+        transform: scale(.25);
+    }
+    .game .leaf03{
+        left: 75%;
+    }
+}
+@keyframes leaf01{
+    0% {
+        background-position: 0px 0;
+    }
+    80% {
+        background-position: -4500px 0;
+        top: 100%;
+        left: 15%;
+        opacity: 0;
+    }
+    100%{
+        background-position: -4500px 0;
+        top: 100%;
+        left: 10%;
+        opacity: 0;
+    }
+}
+@keyframes leaf02{
+    0% {
+        background-position: 0px 0;
+    }
+    80% {
+        background-position: -4500px 0;
+        top: 100%;
+        left: 70%;
+        opacity: 0;
+    }
+    100%{
+        background-position: -4500px 0;
+        top: 100%;
+        left: 60%;
+        opacity: 0;
+    }
+}
+@keyframes leaf03{
+    0% {
+        background-position: 0px 0;
+    }
+    80% {
+        background-position: -4500px 0;
+        top: 100%;
+        left: 60%;
+        opacity: 0;
+    }
+    100%{
+        background-position: -4500px 0;
+        top: 100%;
+        left: 50%;
+        opacity: 0;
+    }
+}
+
+/* game option use */
+.game .stickerBox li{
+    transform: scale(0);
+}
+.game .stickerBox .active li:nth-child(1){
+    transform: scale(1);
+    transition: transform .5s ease 1.5s;
+}
+.game .stickerBox .active li:nth-child(2){
+    transform: scale(1);
+    transition: transform .5s ease 1.75s;
+}
+.game .stickerBox .active li:nth-child(3){
+    transform: scale(1);
+    transition: transform .5s ease 2s;
+}
+.game .stickerBox .active li:nth-child(4){
+    transform: scale(1);
+    transition: transform .5s ease 2.25s;
+}
+.game .stickerBox .active li:nth-child(5){
+    transform: scale(1);
+    transition: transform .5s ease 2.5s;
+}
+.game .stickerBox .active li:nth-child(6){
+    transform: scale(1);
+    transition: transform .5s ease 2.75s;
+}
+.game .game-sub{
+    transform: translate3d(0, -25px, 0);
+    opacity: 0;
+}
+.game .game-sub.active{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    transition: transform .75s ease 3.25s, opacity .75s ease 3.25s;
+}
+
+/* android input use */
+.input_focus.trans_bg {
+    display: none;
 }

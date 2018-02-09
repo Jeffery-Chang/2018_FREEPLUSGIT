@@ -18,34 +18,57 @@ window.sr = ScrollReveal({
         el: '#indexPage',
         data: {
             menuFG: false,
-            actFG: false,
+            checkFG: false,
             doneFG: false,
             goGameFG: true,
-            pageStep: 0
+            pageStep: 0,
+            gameStep: 0,
+            choosen: 999,
+            cityColor: 'rgb(115, 115, 115)',
+            disColor: 'rgb(115, 115, 115)',
+            formName: '',
+            formPhone: '',
+            formEmail: '',
+            formCity: '',
+            formDistrict: '',
+            formAddress: '',
+            chkmsg: [],
+            inputWarn: []
         },
         computed:{
             isOverflow(){
-                return this.menuFG;
-            }  
+                return this.menuFG || this.doneFG || this.checkFG;
+            },
+            isNext(){
+                return (this.choosen != 999 && this.choosen >= 0 && this.choosen <= 5);
+            },
+            fullAddr(){
+                return this.formCity + this.formDistrict + this.formAddress;
+            }
         },
-        created: function () {
+        created() {
             window.addEventListener('scroll', this.ctrlScroll);
         },
-        beforeMount: function(){
-
-        },
-        mounted: function(){
+        mounted(){
+            if(this.chkSafari()){
+                document.querySelector('section.kv').style.height = (document.querySelector('section.kv').offsetHeight - 70) + 'px';
+                alert('adjust safari done');
+            }
             document.addEventListener("DOMContentLoaded", () => {
+                this.setOverFlow();
+                this.ctrlScroll();
+                this.initTwCitySelector();
                 this.initSR();
             });
         },
         methods: {
-            ctrlScroll: function(){
+            ctrlScroll(){
                 var winTop = window.scrollY || document.documentElement.scrollTop;
                 var intro = document.querySelector('.intro').offsetTop - document.querySelector('header').offsetHeight;
                 var game = document.querySelector('.game').offsetTop - document.querySelector('header').offsetHeight;
                 var about = document.querySelector('.about').offsetTop - document.querySelector('header').offsetHeight;
                 var productBox = document.querySelector('.productBox').offsetTop - document.querySelector('header').offsetHeight;
+                var fixedBtn = document.querySelector('.btn-game .triBox');
 
                 if(winTop >= productBox){
                     this.pageStep = 4;
@@ -58,8 +81,10 @@ window.sr = ScrollReveal({
                 }else{
                     this.pageStep = 0;
                 }
-                
+
                 this.goGameFG = (winTop >= game && winTop <= about) ? false : true;
+                if(this.goGameFG && winTop > game) fixedBtn.classList.add('rotate') 
+                if(this.goGameFG && winTop <= game)fixedBtn.classList.remove('rotate');
             },
             scrollMenu(target, gaName){
                 var target = target || null;
@@ -70,20 +95,64 @@ window.sr = ScrollReveal({
                     this.scrollToY(target);
                 });
             },
+            initTwCitySelector(){
+                new TwCitySelector({
+                    el: '.citySelector',
+                    elCounty: '.formCity',
+                    countyClassName: 'formCity',
+                    elDistrict: '.formDistrict',
+                    districtClassName: 'formDistrict'
+                });  
+            },
             initSR(){
+                // 上進物件
                 var kvObj = '.kv h1';
                 var introObj = '.intro .txt-fir, .intro .txt-sec, .intro .txt-thir';
                 var gameObj = '.game .game-tt';
                 var formObj = '.form h2, .form .sub, .form .main';
-                var fadeInDownStr = kvObj + ', ' + introObj + ', ' + gameObj + ', ' + formObj;
+                var aboutObj = '.about h2, .about h3, .about .feature, .about .sub, .about .btn';
+                var pdtObj = '.productBox .pro-kv, .productBox .product .bottom';
+                var shopObj = '.shop h2, .shop h3, .shop .w-btn, .shop .img, .shop .btn, .shop .txt';
+                var fadeInDownStr = kvObj + ', ' + introObj + ', ' + gameObj + ', ' + formObj + ', ' + aboutObj + ', ' + pdtObj + ', ' + shopObj;
+
+                // 左進物件
+                var formLeftObj = '.form .img img';
+                var pftLeftObj = '.productBox .product.one .top .proBox, .productBox .product.two .detail';
+                var fadeInLeftStr = formLeftObj + ', ' + pftLeftObj;
+
+                // 右進物件
+                var formRightObj = '.form .detail';
+                var pftRightObj = '.productBox .product.one .detail, .productBox .product.two .top .proBox';
+                var fadeInRightStr = formRightObj + ', ' + pftRightObj;
+
+
+                // 從上面掉下來的所有物件
                 sr.reveal(fadeInDownStr, {
                     origin: 'top',
                     delay: 250
                 });
+
+                // 左進
+                sr.reveal(fadeInLeftStr, {
+                    origin: 'left',
+                    distance: '75px',
+                    delay: 250
+                });
+
+                // 右進
+                sr.reveal(fadeInRightStr, {
+                    origin: 'right',
+                    distance: '75px',
+                    delay: 250
+                });
+
+                // kv產品現身
                 sr.reveal('.kv .kv-product', {
                     distance: '0',
                     delay: 250
                 });
+
+                // kv泡泡們
                 sr.reveal('.kv .mainBox .poabs.bubbleWord, .kv .mainBox .poabs .bubbleImg', {
                     duration: 1000,
                     origin: 'bottom',
@@ -91,14 +160,135 @@ window.sr = ScrollReveal({
                     scale: 0.7,
                     delay: 500
                 });
+
+                // game底板 .game .main
+                // game選項 .game .stickerBox li
+                // game文案 .game .game-sub
+                sr.reveal('.game .step1 .main', {
+                    duration: 500,
+                    distance: '0',
+                    delay: 500,
+                    beforeReveal: function (domEl){
+                        // game 物件進場 用css做
+                        document.querySelector('.game .stickerBox ul').classList.add('active');
+                        document.querySelector('.game .game-sub').classList.add('active');
+                    }
+                });
             },
-            setOverFlow: function(){
+            avoidAnriod(evt){
+                // 判裝安卓手機
+                function getMobileOperatingSystem() {
+                    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                    if (/android/i.test(userAgent)) {
+                        return true;
+                    }
+                    return false;
+                };
+
+                if(getMobileOperatingSystem()) {
+                    screen.orientation.onchange = function (){
+                        var way = screen.orientation.type.match(/\w+/)[0];
+                        if (way == "landscape"){
+                            document.querySelector('.trans_bg').classList.remove('input_focus');
+                        }
+                    };
+                };
+
+                document.querySelector('.trans_bg').classList.add('input_focus');
+            },
+            setValue(val){
+                var thisVal = document.querySelector('.'+val).value;
+                if(val == 'formCity') this.formDistrict = '請選擇區域';
+                this.$data[val] = thisVal;
+                this.$nextTick(function(){
+                    this.cityColor = (thisVal != '請選擇縣市') ? 'rgb(0, 0, 0)' : 'rgb(115, 115, 115)';
+                    this.disColor = (this.formDistrict != '請選擇區域') ? 'rgb(0, 0, 0)' : 'rgb(115, 115, 115)';
+                });
+            },
+            changeStep(cnt, to){
+                if(cnt == 1 && this.isNext){
+                    this.gameStep = cnt;
+                }else if(cnt == 0){
+                    this.gameStep = cnt;
+                    this.choosen = 999;
+                }else if(cnt == 2 && this.isNext){
+
+                }
+                this.$nextTick(function(){
+                    this.scrollMenu(to);
+                });
+            },
+            pass(index){
+                return this.inputWarn.indexOf(index) > -1;
+            },
+            checkData(){
+                this.chkmsg = [];
+                this.inputWarn = [];
+                var read = document.querySelector('.form .radio').checked;
+                if(!CH.checktxt(this.formName)){
+                    this.chkmsg.push('請輸入真實姓名');
+                    this.inputWarn.push(1);
+                }
+                if(!CH.isValidCell(this.formPhone)){
+                    this.chkmsg.push('請輸入聯絡電話');
+                    this.inputWarn.push(2);
+                }
+                if(!CH.isValidMail(this.formEmail)){
+                    this.chkmsg.push('請輸入E-MAIL');
+                    this.inputWarn.push(3);
+                }
+                if(!CH.checktxt(this.formCity) && this.formCity != '請選擇縣市') this.inputWarn.push(4);
+                if(!CH.checktxt(this.formDistrict) && this.formDistrict != '請選擇區域') this.inputWarn.push(5);
+                if(!CH.checktxt(this.formAddress))this.inputWarn.push(6);
+                if(this.pass(4) || this.pass(5) || this.pass(6)) this.chkmsg.push('請輸入詳細地址');
+
+                if(!read){
+                    this.chkmsg.push('請同意相關規定');
+                    this.inputWarn.push(7);
+                }
+
+                (this.chkmsg.length > 0) ? this.checkFG = true : this.sendAPI() ;
+            },
+            sendAPI(){
+                /*axios({
+                    method: 'post',
+                    url: '',
+                    data: {
+                        name: this.formName,
+                        phone: this.formPhone,
+                        email: this.formEmail,
+                        addr: this.fullAddr
+                    }
+                }).then((response) => {
+
+                });*/
+                this.doneFG = true;
+            },
+            chkSafari: function(){
+                var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                return isMobile.phone && isSafari && iOS;
+            },
+            shareFB(track){
+                var date = new Date();
+                var year = date.getFullYear().toString();
+                var month = (date.getMonth()+1).toString();
+                var day = ((date.getDate() < 10) ? '0' : '') + date.getDate().toString();
+                var urlDate = year + month + day;
+
+                var fb_url = (isMobile.phone) ? 'http://m.facebook.com/sharer.php?u=' : 'http://www.facebook.com/sharer.php?u=';
+                var fbBack_url = (track) ? track + '&v=' + urlDate : '?v=' + urlDate;
+                var share_u;
+                share_u = location.href + fbBack_url;
+                window.open(fb_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
+            },
+            setOverFlow(){
                 document.body.style.cssText = (this.isOverflow == true) ? 'overflow-y: hidden' : '';
             },
-            scrollToY: function(scrollTargetY, speed, easing, callback){
+            scrollToY(scrollTargetY, speed, easing, callback){
                 var scrollY = window.scrollY || document.documentElement.scrollTop,
                     scrollTargetY = scrollTargetY || 0,
-                    speed = speed || 2000,
+                    speed = speed || 200,
                     easing = easing || 'easeOutSine',
                     callback = callback || null,
                     currentTime = 0;
