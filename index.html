@@ -18,9 +18,9 @@
         <link rel="stylesheet" href="css/style.css">
         <!--if gt IE 9-->
         <script src="js/vendor/html5shiv.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
-        <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+        <script src="js/vendor/vue.min.js"></script>
+        <script src="js/vendor/scrollreveal.min.js"></script>
+        <script src="js/vendor/axios.min.js"></script>
         <script src="js/vendor/tw-city-selector.min.js"></script>
         <script src="js/vendor/isMobile.min.js"></script>
         <script src="js/vendor/ch.min.js"></script>
@@ -29,9 +29,20 @@
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
         <!-- own style-->
         <link rel="stylesheet" href="bundle/self.css">
+
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function(a,c,d,g,h,i,j){a.fbq||(h=a.fbq=function(){h.callMethod?h.callMethod.apply(h,arguments):h.queue.push(arguments)},!a._fbq&&(a._fbq=h),h.push=h,h.loaded=!0,h.version='2.0',h.queue=[],i=c.createElement(d),i.async=!0,i.src=g,j=c.getElementsByTagName(d)[0],j.parentNode.insertBefore(i,j))}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '170759430216080');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            <img height="1" width="1" src="https://www.facebook.com/tr?id=170759430216080&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
     </head>
     <body>
-        <div id="indexPage" v-cloak>
+        <div id="indexPage" v-cloak v-if="!ieFG">
             <div class="trans_bg">
                 <div class="trans_ipad">
                     <div class="trans_center"><img src="img/ipad_ok_landscape.png">                
@@ -84,7 +95,7 @@
             <div class="wrap">
                 <!-- header -->
                 <!-- add '.open'-->
-                <header :class="{ 'open' : menuFG }"><a class="logo" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
+                <header :class="{ 'open' : menuFG }"><a class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                     <!-- bur-->
                     <div class="burBox" @click.prevent.stop="menuFG = !menuFG"><a class="bur" :class="{ 'active' : menuFG }" href=""><span></span></a></div>
                     <!-- M Menu-->
@@ -97,9 +108,9 @@
                             <li><a @click.prevent.self="scrollMenu('game');" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
                             <li><a @click.prevent.self="scrollMenu('about');" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
                             <li><a @click.prevent.self="scrollMenu('productBox');" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a @click.prevent.self href="#" v-if="false">中獎名單</a></li>
+                            <li><a @click="menuFG = false" href="award.html" target="_blank" v-if="false">中獎名單</a></li>
                             <li><a @click="menuFG = false" href="rule.html" target="_blank">活動辦法</a></li>
-                        </ul><a class="menu-logo poabs" href="index.html"> <img src="../asset/svg/logo.svg" alt="logo"></a>
+                        </ul><a class="menu-logo poabs" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
                         </div>
                     </div>

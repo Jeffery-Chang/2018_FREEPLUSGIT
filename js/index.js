@@ -17,6 +17,7 @@ window.sr = ScrollReveal({
     var indexCtrl = new Vue({
         el: '#indexPage',
         data: {
+            ieFG: false,
             menuFG: false,
             checkFG: false,
             doneFG: false,
@@ -29,8 +30,8 @@ window.sr = ScrollReveal({
             formName: '',
             formPhone: '',
             formEmail: '',
-            formCity: '',
-            formDistrict: '',
+            formCity: '請選擇縣市',
+            formDistrict: '請選擇區域',
             formAddress: '',
             chkmsg: [],
             inputWarn: []
@@ -50,9 +51,15 @@ window.sr = ScrollReveal({
             window.addEventListener('scroll', this.ctrlScroll);
         },
         mounted(){
+            if(this.chkIE9() <= 9){
+                this.ieFG = true;
+                location.href = 'index_ie.html';
+                return;
+            }
+
             if(this.chkSafari()){
                 document.querySelector('section.kv').style.height = (document.querySelector('section.kv').offsetHeight - 70) + 'px';
-                alert('adjust safari done');
+                //alert('adjust safari done');
             }
             document.addEventListener("DOMContentLoaded", () => {
                 this.setOverFlow();
@@ -237,8 +244,8 @@ window.sr = ScrollReveal({
                     this.chkmsg.push('請輸入E-MAIL');
                     this.inputWarn.push(3);
                 }
-                if(!CH.checktxt(this.formCity) && this.formCity != '請選擇縣市') this.inputWarn.push(4);
-                if(!CH.checktxt(this.formDistrict) && this.formDistrict != '請選擇區域') this.inputWarn.push(5);
+                if(!CH.checktxt(this.formCity) || this.formCity == '請選擇縣市') this.inputWarn.push(4);
+                if(!CH.checktxt(this.formDistrict) || this.formDistrict == '請選擇區域') this.inputWarn.push(5);
                 if(!CH.checktxt(this.formAddress))this.inputWarn.push(6);
                 if(this.pass(4) || this.pass(5) || this.pass(6)) this.chkmsg.push('請輸入詳細地址');
 
@@ -250,24 +257,57 @@ window.sr = ScrollReveal({
                 (this.chkmsg.length > 0) ? this.checkFG = true : this.sendAPI() ;
             },
             sendAPI(){
-                /*axios({
-                    method: 'post',
-                    url: '',
-                    data: {
-                        name: this.formName,
-                        phone: this.formPhone,
-                        email: this.formEmail,
-                        addr: this.fullAddr
-                    }
-                }).then((response) => {
+                var $this = this;
+                var url = location.origin + finder + '/api/post_member.php';
+                var postData = new FormData();
+                postData.append('name', $this.formName);
+                postData.append('phone', $this.formPhone);
+                postData.append('email', $this.formEmail);
+                postData.append('address', $this.fullAddr);
+                $this.chkmsg = [];
 
-                });*/
-                this.doneFG = true;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: postData
+                }).then((response) => {
+                    // console.log(response);
+                    if(response.data.status === 200){
+                        $this.doneFG = true;
+                    }else if(response.data.status >= 101 && response.data.status <= 105){
+                        $this.chkmsg.push(response.data.err);
+                        $this.checkFG = true;
+                    }
+                }).catch(function (error) {
+                    // console.log('api err, msg is: ', error);
+                    $this.chkmsg.push('系統繁忙，請稍候再試，謝謝！');
+                    $this.checkFG = true;
+                });;
             },
             chkSafari: function(){
                 var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
                 var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 return isMobile.phone && isSafari && iOS;
+            },
+            chkIE9: function(){
+                var userAgent = navigator.userAgent;
+                var fIEVersion = parseFloat(RegExp["$1"]); 
+
+                if(userAgent.indexOf('MSIE 6.0') != -1){
+                    return 6;
+                }else if(fIEVersion == 7){
+                    return 7;
+                }else if(fIEVersion == 8){
+                    return 8;
+                }else if(fIEVersion == 9){
+                    return 9;
+                }else if(fIEVersion == 10){
+                    return 10;
+                }else if(userAgent.toLowerCase().match(/rv:([\d.]+)\) like gecko/)){ 
+                    return 11;
+                }else{
+                    return 999;
+                }
             },
             shareFB(track){
                 var date = new Date();
