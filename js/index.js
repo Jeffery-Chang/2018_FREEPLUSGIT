@@ -34,7 +34,13 @@ window.sr = ScrollReveal({
             formDistrict: '請選擇區域',
             formAddress: '',
             chkmsg: [],
-            inputWarn: []
+            inputWarn: [],
+            ga:{
+                brandFG: false,
+                gameFG: false,
+                pdtFG: false,
+                linksFG: false,
+            }
         },
         computed:{
             isOverflow(){
@@ -66,6 +72,8 @@ window.sr = ScrollReveal({
                 this.ctrlScroll();
                 this.initTwCitySelector();
                 this.initSR();
+                
+                gapage('index');
             });
         },
         methods: {
@@ -79,12 +87,28 @@ window.sr = ScrollReveal({
 
                 if(winTop >= productBox){
                     this.pageStep = 4;
+                    if(!this.linksFG){
+                        gapage('links');
+                        this.linksFG = true;
+                    }
                 }else if(winTop >= about){
                     this.pageStep = 3;
+                    if(!this.pdtFG){
+                        gapage('products');
+                        this.pdtFG = true;
+                    }
                 }else if(winTop >= game){
                     this.pageStep = 2;
+                    if(!this.gameFG){
+                        gapage('game');
+                        this.gameFG= true;
+                    }
                 }else if(winTop >= intro){
                     this.pageStep = 1;
+                    if(!this.brandFG){
+                        gapage('brand');
+                        this.brandFG= true;
+                    }
                 }else{
                     this.pageStep = 0;
                 }

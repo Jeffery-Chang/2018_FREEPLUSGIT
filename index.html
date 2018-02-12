@@ -95,21 +95,21 @@
             <div class="wrap">
                 <!-- header -->
                 <!-- add '.open'-->
-                <header :class="{ 'open' : menuFG }"><a class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
+                <header :class="{ 'open' : menuFG }"><a @click="gaclick('logo');" class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                     <!-- bur-->
-                    <div class="burBox" @click.prevent.stop="menuFG = !menuFG"><a class="bur" :class="{ 'active' : menuFG }" href=""><span></span></a></div>
+                    <div class="burBox" @click.prevent.stop="{ menuFG = !menuFG; gaclick('menu'); }"><a class="bur" :class="{ 'active' : menuFG }" href=""><span></span></a></div>
                     <!-- M Menu-->
                 </header>
                 <transition name="fade">
                     <div class="menuBox" v-show="menuFG">
                         <ul>
-                            <li><a @click.prevent.self="scrollMenu();" :class="{ 'active' : pageStep == 0 }" href="#">回首頁</a></li>
-                            <li><a @click.prevent.self="scrollMenu('intro');" :class="{ 'active' : pageStep == 1 }" href="#">品牌介紹</a></li>
-                            <li><a @click.prevent.self="scrollMenu('game');" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
-                            <li><a @click.prevent.self="scrollMenu('about');" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
-                            <li><a @click.prevent.self="scrollMenu('productBox');" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a @click="menuFG = false" href="award.html" target="_blank" v-if="false">中獎名單</a></li>
-                            <li><a @click="menuFG = false" href="rule.html" target="_blank">活動辦法</a></li>
+                            <li><a @click.prevent.self="{ scrollMenu(); gaclick('index'); }" :class="{ 'active' : pageStep == 0 }" href="#">回首頁</a></li>
+                            <li><a @click.prevent.self="{ scrollMenu('intro'); gaclick('brand'); }" :class="{ 'active' : pageStep == 1 }" href="#">品牌介紹</a></li>
+                            <li><a @click.prevent.self="{ scrollMenu('game'); gaclick('game'); }" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
+                            <li><a @click.prevent.self="{ scrollMenu('about'); gaclick('products'); }" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
+                            <li><a @click.prevent.self="{ scrollMenu('productBox'); gaclick('links'); }" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
+                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="false">中獎名單</a></li>
+                            <li><a @click="{ menuFG = false; gaclick('rules'); }" href="rule.html" target="_blank">活動辦法</a></li>
                         </ul><a class="menu-logo poabs" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
                         </div>
@@ -117,7 +117,7 @@
                 </transition>
                 <div class="container">
                     <transition name="fade">
-                        <div v-show="goGameFG" class="btnBox-kv poabs" @click.prevent.stop="scrollMenu('game', 95);"><a class="btn-game bg-blue" href="#">
+                        <div v-show="goGameFG" class="btnBox-kv poabs" @click.prevent.stop="{ scrollMenu('game', 95); gaclick('cta_btn'); }"><a class="btn-game bg-blue" href="#">
                             <div class="inner"><span class="pro"><img src="img/btn-pro.png" alt=""/></span><span>測驗抽正貨</span><span class="triBox"><span class="triangle"></span></span></div></a></div>
                     </transition>
                     <!--kv-->
@@ -196,21 +196,21 @@
                                     <div class="stickerBox">
                                         <ul>
                                             <!-- a.active -->
-                                            <li @click.prevent.stop="choosen = 0"><a class="option1" :class="{ 'active' : choosen == 0 }" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
+                                            <li @click.prevent.stop="{ choosen = 0; gaclick('icon_1'); }"><a class="option1" :class="{ 'active' : choosen == 0 }" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
                                                 <span class="txt">瓶瓶罐罐</span></a></li>
-                                            <li @click.prevent.stop="choosen = 1"><a class="option2" :class="{ 'active' : choosen == 1 }" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
+                                            <li @click.prevent.stop="{ choosen = 1; gaclick('icon_2'); }"><a class="option2" :class="{ 'active' : choosen == 1 }" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
                                                 <span class="txt">舊娃娃</span></a></li>
-                                            <li @click.prevent.stop="choosen = 2"><a class="option3" :class="{ 'active' : choosen == 2 }" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
+                                            <li @click.prevent.stop="{ choosen = 2; gaclick('icon_3'); }"><a class="option3" :class="{ 'active' : choosen == 2 }" href="#"><span class="img"><img src="img/sticker/option3.png" alt=""/></span>
                                                 <span class="txt">速食快餐</span></a></li>
-                                            <li @click.prevent.stop="choosen = 3"><a class="option4" :class="{ 'active' : choosen == 3 }" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
+                                            <li @click.prevent.stop="{ choosen = 3; gaclick('icon_4'); }"><a class="option4" :class="{ 'active' : choosen == 3 }" href="#"><span class="img"><img src="img/sticker/option4.png" alt=""/></span>
                                                 <span class="txt">摩托車</span></a></li>
-                                            <li @click.prevent.stop="choosen = 4"><a class="option5" :class="{ 'active' : choosen == 4 }" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
+                                            <li @click.prevent.stop="{ choosen = 4; gaclick('icon_5'); }"><a class="option5" :class="{ 'active' : choosen == 4 }" href="#"><span class="img"><img src="img/sticker/option5.png" alt=""/></span>
                                                 <span class="txt">彩妝品</span></a></li>
-                                            <li @click.prevent.stop="choosen = 5"><a class="option6" :class="{ 'active' : choosen == 5 }" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
+                                            <li @click.prevent.stop="{ choosen = 5; gaclick('icon_6'); }"><a class="option6" :class="{ 'active' : choosen == 5 }" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
-                                </div><a class="btn" @click.prevent="changeStep(1, 'game')" href="#">我決定好了<span class="arrow"></span></a>
+                                </div><a class="btn" @click.prevent="{ changeStep(1, 'game'); gaclick('game_submit'); }" href="#">我決定好了<span class="arrow"></span></a>
                             </div>
                         </transition>
                         <transition name="fade">
@@ -258,7 +258,7 @@
                                     <div class="leaves"><img src="img/leaves.png" alt=""/>
                                     </div>
                                 </div>
-                                <div class="btnBox"><a class="fb btn" @click.prevent="shareFB('?back=1');" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" @click.prevent="changeStep(2, 'form')" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
+                                <div class="btnBox"><a class="fb btn" @click.prevent="{ shareFB('?back=1'); gaclick('fb_share'); }" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" @click.prevent="{ changeStep(2, 'form'); gaclick('to_form'); }" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
                             </div>
                         </transition>
                     </section>
@@ -337,9 +337,9 @@
                             <!--- div.warn-check -->
                             <div class="check" :class="{ 'warn-check' : pass(7) }">
                                 <label class="label-radio">
-                                    <input class="radio" type="radio" name="foo"><span>本人同意<a href="rule.html" target="_blank">活動辦法、個資法與隱私權</a>相關規定</span>
+                                    <input class="radio" type="radio" name="foo"><span>本人同意<a @click="gaclick('to_rule');" href="rule.html" target="_blank">活動辦法、個資法與隱私權</a>相關規定</span>
                                 </label>
-                            </div><a class="btn" @click.prevent="checkData" href="#">確認送出<span class="arrow"></span></a>
+                            </div><a class="btn" @click.prevent="{ checkData(); gaclick('form_submit'); }" href="#">確認送出<span class="arrow"></span></a>
                         </div>
                         <div class="light-bg"><img src="img/light.png" alt=""/>
                         </div>
@@ -362,12 +362,12 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a class="btn" href="https://goo.gl/Pfacba" target="_blank">低刺激配方無藏私公開<span class="arrow"></span></a>
+                            <div class="sub">選用低刺激配方，不易造成肌膚負擔！</div><a @click="gaclick('btn_1');" class="btn" href="https://goo.gl/Pfacba" target="_blank">低刺激配方無藏私公開<span class="arrow"></span></a>
                         </div>
                         <div class="heBox">
                             <h2><span>\ 實現<span class="underline blue"> <span class="dot">高</span><span class="dot">保</span><span class="dot">水</span><span class="dot">力</span></span> /</span></h2>
                             <h3>“ 精選 6 種和漢保濕植萃 ”</h3>
-                            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a class="btn" href="https://goo.gl/k8wrDv" target="_blank">和漢植物的小故事<span class="arrow"></span></a>
+                            <div class="sub">添加 6 種和漢保濕植萃<br>強化角質層屏障機能，為肌膚充沛保濕！</div><a @click="gaclick('btn_2');" class="btn" href="https://goo.gl/k8wrDv" target="_blank">和漢植物的小故事<span class="arrow"></span></a>
                             <div class="he-bg"><img src="img/plant.png" alt=""/>
                             </div>
                         </div>
@@ -391,7 +391,7 @@
                                         <li class="blue">\經典人氣款/</li>
                                         <li>溫和淨潤皂霜</li>
                                         <li>“ 洗顏同時滋潤肌膚！ ”</li>
-                                        <li><a href="https://goo.gl/XFKJdx" target="_blank">了解更多 ＋</a></li>
+                                        <li><a @click="gaclick('product_1');" href="https://goo.gl/XFKJdx" target="_blank">了解更多 ＋</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -414,7 +414,7 @@
                                         <li class="blue">\方便的按壓式/ </li>
                                         <li>溫和淨潤洗顏泡沫</li>
                                         <li>“ 泡沫豐盈綿滑洗後超潤澤！ ”</li>
-                                        <li><a href="https://goo.gl/Wwrb86" target="_blank">了解更多 ＋</a></li>
+                                        <li><a @click="gaclick('product_2');" href="https://goo.gl/Wwrb86" target="_blank">了解更多 ＋</a></li>
                                     </ul>
                                 </div>
                                 <div class="proBox">
@@ -441,12 +441,12 @@
                             <h2><span>\ freeplus 就在妳身邊！ /</span></h2>
                             <h3>“ 登台一週年，只在<span class="underline blue"> <span class="dot">屈</span><span class="dot">臣</span><span class="dot">氏</span></span>販售！ ”</h3>
                             <div class="img"><img src="img/watsons.png" alt=""/></div>
-                            <a class="w-btn blue" href="https://goo.gl/EENJh6" target="_blank">
+                            <a @click="gaclick('watsons_offline');" class="w-btn blue" href="https://goo.gl/EENJh6" target="_blank">
                                 <span>全台屈臣氏獨家販售！</span><span><span class="icon"><img src="asset/svg/pin.svg" alt=""/></span><span>查詢最近店點</span></span>
                             </a>
-                            <a class="w-btn blue" href="https://goo.gl/YgaWbE" target="_blank">
+                            <a @click="gaclick('watsons_online');" class="w-btn blue" href="https://goo.gl/YgaWbE" target="_blank">
                                 <span>屈臣氏網路商城</span><span><span class="icon"><img src="asset/svg/cart.svg" alt=""/></span><span>搶先下單</span></span></a>
-                            <a class="w-btn blue" href="https://goo.gl/SQ6pGz" target="_blank">
+                            <a @click="gaclick('yahoo');" class="w-btn blue" href="https://goo.gl/SQ6pGz" target="_blank">
                                 <span>Yahoo! 超級商城也買得到！</span><span><span class="icon"><img src="asset/svg/shop.svg" alt=""/></span><span>查詢最近店點</span></span>
                             </a>
                         </div>
@@ -454,7 +454,7 @@
                             <h2><span>\一起變得更好/</span></h2>
                             <h3>“ 零添加生活，<span class="underline blue"> <span class="dot">由</span><span class="dot">妳</span><span class="dot">啟</span><span class="dot">動</span></span>！ ”</h3>
                             <div class="img"><img src="img/beauty.png" alt=""/>
-                            </div><a class="btn" href="https://goo.gl/dwLQEm" target="_blank"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
+                            </div><a @click="gaclick('homepage');" class="btn" href="https://goo.gl/dwLQEm" target="_blank"> <span>前往 freeplus 官方網站</span><span>了解更多 +</span></a>
                         </div>
                         <div class="txt">※此活動頁內的「零添加」文字，意指freeplus洗卸、保濕修護系列產品均無添加酒精、香料、色素、Paraben防腐劑。</div>
                         <div class="txt">© 2018 Taiwan Kanebo Cosmetics Co.,LTD. All Rights Reserved.</div>
