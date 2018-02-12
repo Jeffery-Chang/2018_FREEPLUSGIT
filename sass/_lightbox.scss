@@ -22,8 +22,13 @@
         font-size: 1.6rem;
         z-index: 101;
         @media screen and (min-width: 768px) {
-            @include pos-mid;
+            position: fixed;
             border-radius: 10px;
+            width: 80%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
         @media screen and (min-width: 414px) and (max-width: 767px) {
             padding: 60px 30px 35px;
@@ -94,9 +99,13 @@
             font-size: 1.8rem;
         }
         @media screen and (max-width: 767px) {
-            @include pos-mid;
+            position: fixed;
             border-radius: 10px;
             width: 80%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     }
 }

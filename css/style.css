@@ -1876,12 +1876,13 @@ span.inlineblock {
     z-index: 101; }
     @media screen and (min-width: 768px) {
       .popup .main {
-        position: absolute;
+        position: fixed;
+        border-radius: 10px;
+        width: 80%;
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        border-radius: 10px; } }
+        transform: translate(-50%, -50%); } }
     @media screen and (min-width: 414px) and (max-width: 767px) {
       .popup .main {
         padding: 60px 30px 35px;
@@ -1950,13 +1951,13 @@ span.inlineblock {
       font-size: 1.8rem; }
     @media screen and (max-width: 767px) {
       .popup .form-check {
-        position: absolute;
+        position: fixed;
+        border-radius: 10px;
+        width: 80%;
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-        width: 80%; } }
+        transform: translate(-50%, -50%); } }
 
 .featureBox {
   background: white;

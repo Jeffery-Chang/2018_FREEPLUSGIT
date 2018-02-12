@@ -11,12 +11,16 @@
 
 /* fixed scroll use */
 body, html{
-    height: auto;
+height: auto;
 }
 section.kv{
-    height: 100vh;
+height: 100vh;
 }
-
+@media screen and (max-width: 767px){
+    .game {
+        height: calc(100vh - 57px);
+    }
+}
 /* scrollreveal use*/
 .kv h1, .kv .kv-product, .bubbleWord, .bubbleImg, .intro .txt-fir, .intro .txt-sec, .intro .txt-thir{
     visibility: hidden;

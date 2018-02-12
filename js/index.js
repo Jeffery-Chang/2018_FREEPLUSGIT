@@ -298,8 +298,11 @@ window.sr = ScrollReveal({
                     // console.log(response);
                     if(response.data.status === 200){
                         $this.doneFG = true;
-                    }else if(response.data.status >= 101 && response.data.status <= 105){
+                    }else if(response.data.status >= 101 && response.data.status <= 104){
                         $this.chkmsg.push(response.data.err);
+                        $this.checkFG = true;
+                    // 重複可以送，但不存資料庫
+                    }else if(response.data.status <= 105){
                         $this.checkFG = true;
                     }
                 }).catch(function (error) {
@@ -308,12 +311,12 @@ window.sr = ScrollReveal({
                     $this.checkFG = true;
                 });;
             },
-            chkSafari: function(){
+            chkSafari(){
                 var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
                 var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 return isMobile.phone && isSafari && iOS;
             },
-            chkIE9: function(){
+            chkIE9(){
                 var userAgent = navigator.userAgent;
                 var fIEVersion = parseFloat(RegExp["$1"]); 
 
