@@ -24,7 +24,7 @@
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
         <!-- own style-->
         <link rel="stylesheet" href="">
-        
+
         <!-- Facebook Pixel Code -->
         <script>
             !function(a,c,d,g,h,i,j){a.fbq||(h=a.fbq=function(){h.callMethod?h.callMethod.apply(h,arguments):h.queue.push(arguments)},!a._fbq&&(a._fbq=h),h.push=h,h.loaded=!0,h.version='2.0',h.queue=[],i=c.createElement(d),i.async=!0,i.src=g,j=c.getElementsByTagName(d)[0],j.parentNode.insertBefore(i,j))}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -55,7 +55,7 @@
             <!-- add '.open'-->
             <header><a class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                 <!-- bur-->
-                <div class="burBox"><a class="bur active" href="javascript: window.close();"><span></span></a></div>
+                <div class="burBox"><a class="bur active" href="#"><span></span></a></div>
                 <!-- M Menu-->
             </header>
             <div class="menuBox" style="display:none;">
@@ -165,6 +165,35 @@
                 </div>
             </div>
         </div>
-        <script> gapage('rule'); </script>
+        <script>
+            var btn = document.querySelector('.bur.active');
+            var chkWebview = function(){
+                var userAgent = window.navigator.userAgent.toLowerCase();
+                var standalone = window.navigator.standalone;
+                var safari = /safari/.test(userAgent);
+                var fbWebView = /fbid|fbios|fblc|fb_iab|fb4a|fbav/.test(userAgent);
+                var lineWebView = /line/i.test(userAgent);
+                var ios = /iphone|ipod|ipad/.test(userAgent);
+                var uiwebview = false;
+
+                if (!standalone && safari) {
+                    // iosType = 'ios browser';
+                } else if (standalone && !safari) {
+                    // iosType = 'ios standalone';
+                } else if (!standalone && !safari) {
+                    // iosType = 'ios uiwebview';
+                    uiwebview = true;
+                }
+
+                return uiwebview || fbWebView || lineWebView;
+            }
+
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                (chkWebview()) ? location.href = 'index.html' : window.close();
+            });
+
+            gapage('rule');
+        </script>
     </body>
 </html>

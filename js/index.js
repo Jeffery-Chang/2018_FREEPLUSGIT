@@ -68,6 +68,7 @@ window.sr = ScrollReveal({
                 document.querySelector('section.kv').style.height = (document.querySelector('section.kv').offsetHeight - 70) + 'px';
                 //alert('adjust safari done');
             }
+            if(this.chkWebview) document.querySelector('section.game').style.height = 'auto';
             document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     this.loadFG = true;
@@ -270,7 +271,7 @@ window.sr = ScrollReveal({
                     this.inputWarn.push(1);
                 }
                 if(!CH.isValidCell(this.formPhone)){
-                    this.chkmsg.push('請輸入聯絡電話');
+                    this.chkmsg.push('請輸入手機十碼');
                     this.inputWarn.push(2);
                 }
                 if(!CH.isValidMail(this.formEmail)){
@@ -346,6 +347,26 @@ window.sr = ScrollReveal({
                 }else{
                     return 999;
                 }
+            },
+            chkWebview: function(){
+                var userAgent = window.navigator.userAgent.toLowerCase();
+                var standalone = window.navigator.standalone;
+                var safari = /safari/.test(userAgent);
+                var fbWebView = /fbid|fbios|fblc|fb_iab|fb4a|fbav/.test(userAgent);
+                var lineWebView = /line/i.test(userAgent);
+                var ios = /iphone|ipod|ipad/.test(userAgent);
+                var uiwebview = false;
+
+                if (!standalone && safari) {
+                    // iosType = 'ios browser';
+                } else if (standalone && !safari) {
+                    // iosType = 'ios standalone';
+                } else if (!standalone && !safari) {
+                    // iosType = 'ios uiwebview';
+                    uiwebview = true;
+                }
+
+                return uiwebview || fbWebView || lineWebView;
             },
             shareFB(track){
                 var date = new Date();
