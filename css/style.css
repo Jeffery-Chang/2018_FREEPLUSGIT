@@ -155,7 +155,6 @@ section {
     width: 102%;
     background: #ffcbe5;
     z-index: -1;
-    -webkit-transition: width .3s ease;
     transition: width .3s ease; }
     @media screen and (max-width: 767px) {
       .underline:after {
@@ -401,7 +400,6 @@ body {
 *,
 *:after,
 *:before {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 * {
@@ -509,7 +507,6 @@ header {
     pointer-events: none; }
 
 .form {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#e4f5f9), color-stop(99%, #d1e8f4));
   background-image: linear-gradient(to top, #e4f5f9, #d1e8f4 99%);
   padding-top: 60px;
   overflow: hidden; }
@@ -667,7 +664,6 @@ input {
   border: 0;
   text-align: left;
   background: transparent;
-  -webkit-box-shadow: transparent;
   box-shadow: transparent;
   font-size: 18px;
   font-size: 1.8rem;
@@ -773,7 +769,6 @@ select {
   flex-shrink: 0;
   padding-left: 0; }
   .radio:before {
-    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
@@ -824,7 +819,6 @@ a.bur {
     width: 42px;
     height: 5px;
     background: #00a7c1;
-    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     border-radius: 2px; }
     @media screen and (max-width: 767px) {
@@ -838,7 +832,6 @@ a.bur {
       background: #00a7c1;
       content: '';
       height: 5px;
-      -webkit-transition: all .2s ease-in-out;
       transition: all .2s ease-in-out;
       right: 0;
       width: 42px; }
@@ -914,7 +907,6 @@ h1 {
   overflow: hidden;
   background: #daeffc;
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #daeffc), color-stop(100%, #cceafa));
-  background: -webkit-gradient(linear, left top, left bottom, from(#daeffc), to(#cceafa));
   background: linear-gradient(to bottom, #daeffc 0%, #cceafa 100%); }
   @media screen and (max-width: 767px) {
     .kv {
@@ -940,7 +932,6 @@ h1 {
   width: 280px;
   margin: 5px auto 100px;
   padding-left: 35px;
-  -webkit-box-sizing: content-box;
   box-sizing: content-box; }
   @media screen and (max-width: 767px) {
     .kv-product {
@@ -1871,7 +1862,7 @@ span.inlineblock {
   height: 100%; }
   @media screen and (max-width: 767px) {
     .popup {
-      position: absolute;
+      position: fixed;
       overflow-y: scroll; } }
   .popup .bg {
     position: fixed;
