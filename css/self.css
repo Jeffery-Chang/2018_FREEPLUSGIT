@@ -11,12 +11,12 @@
 
 /* fixed scroll use */
 body, html{
-height: auto;
+    height: auto;
 }
 section.kv{
-height: 100vh;
+    height: 100vh;
 }
-@media screen and (max-width: 767px){
+@media screen and (min-width: 375px) and (max-width: 767px){
     .game {
         height: calc(100vh - 57px);
     }

@@ -7,11 +7,10 @@
         <title>freeplus的零添加主張</title>
         <!-- facebook share-->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="">
-        <meta property="og:description" content="">
-        <meta property="og:image" content="">
-        <meta property="og:site_name" content="">
-        <meta property="og:url" content="">
+        <meta property="og:title" content="即刻開啟肌膚的零添加生活！｜freeplus">
+        <meta property="og:description" content="零添加的freeplus只給肌膚需要的水潤呵護。立即參加《捨/得測驗》獲得嶄新生活的秘密方針，再抽溫和淨潤皂霜x卸粧霜正貨！點我測驗Go>>
+">
+        <meta property="og:image" content="img/share.png">
         <!-- favicon-->
         <link rel="icon" href="img/favicon.ico">
         <!-- css style-->
@@ -275,7 +274,7 @@
                                     </div>
                                     <div class="detail">
                                         <div class="tt underline blue">首獎</div>
-                                        <div class="txt">freeplus溫和淨潤皂霜 & freeplus溫和淨潤卸粧霜正貨乙組，共5名</div>
+                                        <div class="txt">freeplus溫和淨潤皂霜 & freeplus溫和淨潤卸粧霜正貨乙組(價值$1200)，共5名</div>
                                     </div>
                                 </li>
                                 <li>
@@ -299,11 +298,11 @@
                                 <ul>
                                     <!-- li.warn -->
                                     <li :class="{ 'warn' : pass(1) }">
-                                        <label class="blue">姓名</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <label class="blue">姓名</label><a class="del_pos" @click.prevent="formName = ''" href="#" v-show="formName != ''"><img src="asset/svg/del.svg" alt=""/></a>
                                         <input  type="text" maxlength="5" placeholder="請填寫真實姓名" v-model="formName" @focus="avoidAnriod">
                                     </li>
                                     <li :class="{ 'warn' : pass(2) }">
-                                        <label class="blue">電話</label><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                        <label class="blue">電話</label><a class="del_pos" @click.prevent="formPhone = ''" href="#" v-show="formPhone != ''"><img src="asset/svg/del.svg" alt=""/></a>
                                         <input type="tel" maxlength="10" placeholder="請輸入聯絡電話" v-model="formPhone" @focus="avoidAnriod">
                                     </li>
                                 </ul>
@@ -311,7 +310,7 @@
                             <div class="formBox">
                                 <label class="blue add-label">E-MAIL</label>
                                 <ul>
-                                    <li class="mail" :class="{ 'warn' : pass(3) }"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                    <li class="mail" :class="{ 'warn' : pass(3) }"><a class="del_pos" @click.prevent="formEmail = ''" href="#" v-show="formEmail != ''"><img src="asset/svg/del.svg" alt=""/></a>
                                         <input type="email" maxlength="50" placeholder="避免使用易漏信之免費信箱" v-model="formEmail" @focus="avoidAnriod">
                                     </li>
                                 </ul>
@@ -329,7 +328,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="add" :class="{ 'warn' : pass(6) }"><a class="del_pos" href="#"><img src="asset/svg/del.svg" alt=""/></a>
+                                    <li class="add" :class="{ 'warn' : pass(6) }"><a class="del_pos" @click.prevent="formAddress = ''" href="#" v-show="formAddress != ''"><img src="asset/svg/del.svg" alt=""/></a>
                                         <input type="text" maxlength="50" placeholder="請輸入詳細地址" v-model="formAddress" @focus="avoidAnriod">
                                     </li>
                                 </ul>
@@ -399,7 +398,7 @@
                                 <ul>
                                     <li>輕輕搓揉就能產生豐盈綿密的泡沫！</li>
                                     <li>弱酸性配方，能深入肌膚紋理去除髒污，溫和低刺激。</li>
-                                    <li>和漢植物保濕成分，洗後能保有絕佳的潤澤狀態。</li>
+                                    <li>方便的按壓式。</li>
                                 </ul>
                                 <div class="img"><img src="img/cream1.png" alt=""/>
                                 </div>
@@ -427,7 +426,7 @@
                                 </div>
                                 <ul>
                                     <li>輕輕一壓就有細緻綿密的洗顏泡沫！</li>
-                                    <li>洗淨髒污的同時，和漢植物保濕成分能迅速淨潤肌膚。</li>
+                                    <li>洗淨髒污的同時，和漢植物保濕成分能維持滋潤。</li>
                                     <li>豐盈泡沫能減輕過度摩擦帶來的刺激，讓洗臉過程成為一種享受！</li>
                                 </ul>
                             </div>

@@ -39,7 +39,7 @@ window.sr = ScrollReveal({
                 brandFG: false,
                 gameFG: false,
                 pdtFG: false,
-                linksFG: false,
+                linksFG: false
             }
         },
         computed:{
@@ -84,6 +84,8 @@ window.sr = ScrollReveal({
                 var about = document.querySelector('.about').offsetTop - document.querySelector('header').offsetHeight;
                 var productBox = document.querySelector('.productBox').offsetTop - document.querySelector('header').offsetHeight;
                 var fixedBtn = document.querySelector('.btn-game .triBox');
+                var btmAdj = (isMobile.phone) ? 0.95 : (isMobile.tablet) ? 0.9775 : 0.975;
+                var btmDisappear = (document.querySelector('.wrap .container').offsetHeight - document.querySelector('section.kv').offsetHeight) * btmAdj;
 
                 if(winTop >= productBox){
                     this.pageStep = 4;
@@ -112,8 +114,8 @@ window.sr = ScrollReveal({
                 }else{
                     this.pageStep = 0;
                 }
-
-                this.goGameFG = (winTop >= game && winTop <= about) ? false : true;
+                
+                this.goGameFG = ((winTop >= game && winTop <= about) || winTop > btmDisappear) ? false : true;
                 if(this.goGameFG && winTop > game) fixedBtn.classList.add('rotate') 
                 if(this.goGameFG && winTop <= game)fixedBtn.classList.remove('rotate');
             },
@@ -303,7 +305,7 @@ window.sr = ScrollReveal({
                         $this.checkFG = true;
                     // 重複可以送，但不存資料庫
                     }else if(response.data.status <= 105){
-                        $this.checkFG = true;
+                        $this.doneFG = true;
                     }
                 }).catch(function (error) {
                     // console.log('api err, msg is: ', error);

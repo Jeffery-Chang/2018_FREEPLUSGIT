@@ -155,6 +155,7 @@ section {
     width: 102%;
     background: #ffcbe5;
     z-index: -1;
+    -webkit-transition: width .3s ease;
     transition: width .3s ease; }
     @media screen and (max-width: 767px) {
       .underline:after {
@@ -400,6 +401,7 @@ body {
 *,
 *:after,
 *:before {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 * {
@@ -507,6 +509,7 @@ header {
     pointer-events: none; }
 
 .form {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#e4f5f9), color-stop(99%, #d1e8f4));
   background-image: linear-gradient(to top, #e4f5f9, #d1e8f4 99%);
   padding-top: 60px;
   overflow: hidden; }
@@ -664,6 +667,7 @@ input {
   border: 0;
   text-align: left;
   background: transparent;
+  -webkit-box-shadow: transparent;
   box-shadow: transparent;
   font-size: 18px;
   font-size: 1.8rem;
@@ -708,8 +712,7 @@ select {
   height: 20px;
   position: absolute;
   right: 15px;
-  top: 16px;
-  display: none; }
+  top: 16px; }
 
 .selectStyle li:after {
   content: "";
@@ -770,6 +773,7 @@ select {
   flex-shrink: 0;
   padding-left: 0; }
   .radio:before {
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
@@ -820,6 +824,7 @@ a.bur {
     width: 42px;
     height: 5px;
     background: #00a7c1;
+    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     border-radius: 2px; }
     @media screen and (max-width: 767px) {
@@ -833,6 +838,7 @@ a.bur {
       background: #00a7c1;
       content: '';
       height: 5px;
+      -webkit-transition: all .2s ease-in-out;
       transition: all .2s ease-in-out;
       right: 0;
       width: 42px; }
@@ -908,6 +914,7 @@ h1 {
   overflow: hidden;
   background: #daeffc;
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #daeffc), color-stop(100%, #cceafa));
+  background: -webkit-gradient(linear, left top, left bottom, from(#daeffc), to(#cceafa));
   background: linear-gradient(to bottom, #daeffc 0%, #cceafa 100%); }
   @media screen and (max-width: 767px) {
     .kv {
@@ -933,6 +940,7 @@ h1 {
   width: 280px;
   margin: 5px auto 100px;
   padding-left: 35px;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box; }
   @media screen and (max-width: 767px) {
     .kv-product {
@@ -1389,17 +1397,19 @@ span.inlineblock {
   @media screen and (max-width: 767px) {
     .game-tt {
       font-size: 6.5vw;
-      padding-top: 10px; } }
+      padding-top: 30px;
+      margin-bottom: 10px; } }
   @media screen and (max-width: 413px) {
     .game-tt {
       font-size: 5.5vw;
-      padding-top: 10px; } }
+      padding-top: 25px;
+      margin-bottom: 10px; } }
   @media screen and (max-width: 374px) {
     .game-tt {
-      padding-top: 15px; } }
+      padding-top: 20px; } }
   @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
     .game-tt {
-      padding-top: 30px; } }
+      padding-top: 40px; } }
   .game-tt > span {
     display: block; }
     .game-tt > span:first-child {
@@ -1613,6 +1623,12 @@ span.inlineblock {
           height: 9px;
           bottom: 2px; } }
 
+.btn {
+  margin-top: 30px; }
+  @media screen and (max-width: 413px) {
+    .btn {
+      margin-top: 20px; } }
+
 .step2 {
   height: 100%; }
   .step2 .main {
@@ -1624,20 +1640,16 @@ span.inlineblock {
     z-index: 1; }
     @media screen and (max-width: 767px) {
       .step2 .main {
-        padding-top: 30px;
-        height: 440px; } }
+        padding-top: 50px;
+        height: 480px; } }
     @media screen and (max-width: 413px) {
       .step2 .main {
-        padding-top: 20px;
-        height: 390px; } }
-    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-      .step2 .main {
-        height: 455px;
-        padding-top: 30px; } }
+        padding-top: 30px;
+        height: 425px; } }
     @media screen and (max-width: 374px) {
       .step2 .main {
-        padding-top: 15px;
-        height: 315px; } }
+        padding-top: 30px;
+        height: 340px; } }
   .step2 .leaves {
     width: 62%;
     position: absolute;
