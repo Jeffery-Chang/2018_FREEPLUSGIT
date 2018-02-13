@@ -45,6 +45,9 @@ h1 {
     background: -o-linear-gradient(top, rgba(218, 239, 252, 1) 0%, rgba(204, 234, 250, 1) 100%);
     background: -ms-linear-gradient(top, rgba(218, 239, 252, 1) 0%, rgba(204, 234, 250, 1) 100%);
     background: linear-gradient(to bottom, rgba(218, 239, 252, 1) 0%, rgba(204, 234, 250, 1) 100%);
+    @media screen and (max-width: 1024px) {
+        height: 100vh;
+    }
     @media screen and (max-width: 767px) {
         padding-top: 60px;
     }

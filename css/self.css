@@ -13,8 +13,16 @@
 body, html{
     height: auto;
 }
-section.kv{
-    height: 100vh;
+
+@media screen and (min-height: 910px) {
+    section.kv{
+        height: 100vh;
+    }
+}
+@media screen and (max-device-width:1024px) {
+    section.kv{
+        height: 100vh;
+    }
 }
 @media screen and (min-width: 375px) and (max-width: 767px){
     .game {
@@ -22,7 +30,7 @@ section.kv{
     }
 }
 /* scrollreveal use*/
-.kv h1, .kv .kv-product, .bubbleWord, .bubbleImg, .intro .txt-fir, .intro .txt-sec, .intro .txt-thir{
+.kv h1, .kv .kv-product, .bubbleWord, .bubbleImg, .intro .txt-fir, .intro .txt-sec, .intro .txt-thir, .game .game-tt, .form h2, .form .sub, .form .main, .about h2, .about h3, .about .feature, .about .sub, .about .btn, .productBox .pro-kv, .productBox .product .bottom, .shop h2, .shop h3, .shop .w-btn, .shop .img, .shop .btn, .shop .txt, .form .img img, .productBox .product.one .top .proBox, .productBox .product.two .detail, .form .detail, .productBox .product.one .detail, .productBox .product.two .top .proBox, .kv .mainBox .poabs.bubbleWord, .kv .mainBox .poabs .bubbleImg, .game .step1 .main{
     visibility: hidden;
 }
 

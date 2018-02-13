@@ -18,6 +18,7 @@ window.sr = ScrollReveal({
         el: '#indexPage',
         data: {
             ieFG: false,
+            loadFG: false,
             menuFG: false,
             checkFG: false,
             doneFG: false,
@@ -68,11 +69,17 @@ window.sr = ScrollReveal({
                 //alert('adjust safari done');
             }
             document.addEventListener("DOMContentLoaded", () => {
-                this.setOverFlow();
-                this.ctrlScroll();
-                this.initTwCitySelector();
-                this.initSR();
-                
+                setTimeout(() => {
+                    this.loadFG = true;
+                    this.$nextTick(function(){
+                        setTimeout(() => {
+                            this.setOverFlow();
+                            this.ctrlScroll();
+                            this.initTwCitySelector();
+                            this.initSR();
+                        }, 250);
+                    });
+                }, 1500);
                 gapage('index');
             });
         },
@@ -114,7 +121,7 @@ window.sr = ScrollReveal({
                 }else{
                     this.pageStep = 0;
                 }
-                
+
                 this.goGameFG = ((winTop >= game && winTop <= about) || winTop > btmDisappear) ? false : true;
                 if(this.goGameFG && winTop > game) fixedBtn.classList.add('rotate') 
                 if(this.goGameFG && winTop <= game)fixedBtn.classList.remove('rotate');
@@ -303,9 +310,11 @@ window.sr = ScrollReveal({
                     }else if(response.data.status >= 101 && response.data.status <= 104){
                         $this.chkmsg.push(response.data.err);
                         $this.checkFG = true;
-                    // 重複可以送，但不存資料庫
+                        // 重複可以送，但不存資料庫
+                        // PM說,還是要有訊息提示
                     }else if(response.data.status <= 105){
-                        $this.doneFG = true;
+                        $this.chkmsg.push(response.data.err);
+                        $this.checkFG = true;
                     }
                 }).catch(function (error) {
                     // console.log('api err, msg is: ', error);

@@ -101,7 +101,7 @@ h2, h3, .award .tt, h1, .bb1,
   font-family: 'Noto Serif,PT Serif', 'source-han-serif-tc', Songti TC, serif; }
 
 html,
-body, input, select, .bubbleBox, .waterdrop, .btn-again .inner, .popup .bg, .menuBox {
+body, input, select, .bubbleBox, .waterdrop, .btn-again .inner, .popup .bg, .menuBox, .loadingBox {
   width: 100%;
   height: 100%; }
 
@@ -111,7 +111,7 @@ body, input, select, .bubbleBox, .waterdrop, .btn-again .inner, .popup .bg, .men
 
 .award li, .bb1,
 .bb2,
-.bb3, .popup .time, .popup .form-check, .product .top, .product .bottom, .menuBox, .award-list .award, .search {
+.bb3, .popup .time, .popup .form-check, .product .top, .product .bottom, .menuBox, .award-list .award, .search, .loadingBox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,6 +155,7 @@ section {
     width: 102%;
     background: #ffcbe5;
     z-index: -1;
+    -webkit-transition: width .3s ease;
     transition: width .3s ease; }
     @media screen and (max-width: 767px) {
       .underline:after {
@@ -222,6 +223,16 @@ h3 {
     margin-top: 10px; }
   100% {
     margin-top: 0px; } }
+@-webkit-keyframes loadingline {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+@keyframes loadingline {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
 .trans_bg {
   position: fixed;
   top: 0;
@@ -400,6 +411,7 @@ body {
 *,
 *:after,
 *:before {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 * {
@@ -448,13 +460,7 @@ textarea {
 .container,
 .wrap,
 .kv {
-  width: 100%;
-  height: auto; }
-  @media screen and (max-device-width: 1024px) {
-    .container,
-    .wrap,
-    .kv {
-      height: 100%; } }
+  width: 100%; }
 
 header {
   width: 100%;
@@ -507,6 +513,7 @@ header {
     pointer-events: none; }
 
 .form {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#e4f5f9), color-stop(99%, #d1e8f4));
   background-image: linear-gradient(to top, #e4f5f9, #d1e8f4 99%);
   padding-top: 60px;
   overflow: hidden; }
@@ -664,6 +671,7 @@ input {
   border: 0;
   text-align: left;
   background: transparent;
+  -webkit-box-shadow: transparent;
   box-shadow: transparent;
   font-size: 18px;
   font-size: 1.8rem;
@@ -769,6 +777,7 @@ select {
   flex-shrink: 0;
   padding-left: 0; }
   .radio:before {
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75), -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
@@ -819,6 +828,7 @@ a.bur {
     width: 42px;
     height: 5px;
     background: #00a7c1;
+    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     border-radius: 2px; }
     @media screen and (max-width: 767px) {
@@ -832,6 +842,7 @@ a.bur {
       background: #00a7c1;
       content: '';
       height: 5px;
+      -webkit-transition: all .2s ease-in-out;
       transition: all .2s ease-in-out;
       right: 0;
       width: 42px; }
@@ -907,7 +918,11 @@ h1 {
   overflow: hidden;
   background: #daeffc;
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #daeffc), color-stop(100%, #cceafa));
+  background: -webkit-gradient(linear, left top, left bottom, from(#daeffc), to(#cceafa));
   background: linear-gradient(to bottom, #daeffc 0%, #cceafa 100%); }
+  @media screen and (max-width: 1024px) {
+    .kv {
+      height: 100vh; } }
   @media screen and (max-width: 767px) {
     .kv {
       padding-top: 60px; } }
@@ -932,6 +947,7 @@ h1 {
   width: 280px;
   margin: 5px auto 100px;
   padding-left: 35px;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box; }
   @media screen and (max-width: 767px) {
     .kv-product {
@@ -1354,7 +1370,7 @@ span.inlineblock {
   overflow: hidden; }
   @media screen and (max-width: 767px) {
     .game {
-      height: calc(100% - 57px); } }
+      height: calc(100vh - 57px); } }
   @media screen and (max-width: 374px) {
     .game {
       height: auto; } }
@@ -2684,6 +2700,29 @@ span.inlineblock {
     @media screen and (max-width: 767px) {
       .notice li:before {
         top: 8px; } }
+
+.loadingBox {
+  background: #00a7c1;
+  position: fixed;
+  z-index: 20; }
+  .loadingBox .loading {
+    width: 100%;
+    height: 1px;
+    background: #85c0dd;
+    position: relative; }
+    .loadingBox .loading:after {
+      content: "";
+      width: 0;
+      height: 1px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background: white;
+      -webkit-animation: loadingline 2.5s ease-out infinite;
+      animation: loadingline 2.5s ease-out infinite;
+      display: block; }
 
 
 

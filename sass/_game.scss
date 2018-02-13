@@ -2,7 +2,7 @@
     background: url(../img/bg-wood.jpg) no-repeat top left / cover;
     overflow: hidden;
     @media screen and (max-width: 767px) {
-        height: calc(100% - 57px);
+        height: calc(100vh - 57px);
     }
     @media screen and (max-width: 374px) {
         height: auto;
