@@ -54,8 +54,9 @@ window.sr = ScrollReveal({
                 return this.formCity + this.formDistrict + this.formAddress;
             }
         },
-        created() {
+        created(){
             window.addEventListener('scroll', this.ctrlScroll);
+            window.addEventListener('orientationchange', this.avoidAnriod);
         },
         mounted(){
             if(this.chkIE9() <= 9){
@@ -75,6 +76,7 @@ window.sr = ScrollReveal({
                     this.$nextTick(function(){
                         setTimeout(() => {
                             this.setOverFlow();
+                            this.avoidAnriod();
                             this.ctrlScroll();
                             this.initTwCitySelector();
                             this.initSR();
@@ -226,7 +228,9 @@ window.sr = ScrollReveal({
                     return false;
                 };
 
+                // 安卓才做處理
                 if(getMobileOperatingSystem()) {
+                    document.querySelector('.trans_bg').classList.add('input_focus');
                     screen.orientation.onchange = function (){
                         var way = screen.orientation.type.match(/\w+/)[0];
                         if (way == "landscape"){
@@ -234,8 +238,6 @@ window.sr = ScrollReveal({
                         }
                     };
                 };
-
-                document.querySelector('.trans_bg').classList.add('input_focus');
             },
             setValue(val){
                 var thisVal = document.querySelector('.'+val).value;

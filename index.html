@@ -115,7 +115,7 @@
                             <li><a @click.prevent.self="{ scrollMenu('game'); gaclick('game'); }" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('about'); gaclick('products'); }" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('productBox'); gaclick('links'); }" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="false">中獎名單</a></li>
+                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="true">中獎名單</a></li>
                             <li><a @click="{ menuFG = false; gaclick('rules'); }" href="rule.html" target="_blank">活動辦法</a></li>
                         </ul><a class="menu-logo poabs" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
@@ -216,7 +216,7 @@
                                             <li @click.prevent.stop="{ choosen = 5; gaclick('icon_6'); }"><a class="option6" :class="{ 'active' : choosen == 5 }" href="#"><span class="img"><img src="img/sticker/option6.png" alt=""></span><span class="txt">和前男友的<br>合照</span></a></li>
                                         </ul>
                                     </div>
-                                    <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>獲取妳的零添加秘密 </div>
+                                    <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>測出妳的零添加主張</div>
                                 </div><a class="btn" @click.prevent="{ changeStep(1, 'game'); gaclick('game_submit'); }" href="#">我決定好了<span class="arrow"></span></a>
                             </div>
                         </transition>
@@ -225,9 +225,9 @@
                                 <div class="main">
                                     <div class="result-tt"><span>肌膚的</span><span><span class="blue underline"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span></span><span>秘密是</span></span></div>
                                     <div class="resultBox">
-                                        <div class="topic" v-show="choosen == 0 || choosen == 3">斷</div>
-                                        <div class="topic" v-show="choosen == 1 || choosen == 4">捨</div>
-                                        <div class="topic" v-show="choosen == 2 || choosen == 5">離</div>
+                                        <div class="topic" v-show="choosen == 2 || choosen == 4">斷</div>
+                                        <div class="topic" v-show="choosen == 0 || choosen == 5">捨</div>
+                                        <div class="topic" v-show="choosen == 1 || choosen == 3">離</div>
                                         <div class="detail" v-show="choosen == 0">
                                             <div class="img result1"><img src="img/sticker/result1.png" alt=""/>
                                             </div>
@@ -307,11 +307,11 @@
                                     <!-- li.warn -->
                                     <li :class="{ 'warn' : pass(1) }">
                                         <label class="blue">姓名</label><a class="del_pos" @click.prevent="formName = ''" href="#" v-show="formName != ''"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input  type="text" maxlength="5" placeholder="請填寫真實姓名" v-model="formName" @focus="avoidAnriod">
+                                        <input  type="text" maxlength="5" placeholder="請填寫真實姓名" v-model="formName">
                                     </li>
                                     <li :class="{ 'warn' : pass(2) }">
                                         <label class="blue">手機</label><a class="del_pos" @click.prevent="formPhone = ''" href="#" v-show="formPhone != ''"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input type="tel" maxlength="10" placeholder="請輸入手機十碼" v-model="formPhone" @focus="avoidAnriod">
+                                        <input type="tel" maxlength="10" placeholder="請輸入手機十碼" v-model="formPhone">
                                     </li>
                                 </ul>
                             </div>
@@ -319,7 +319,7 @@
                                 <label class="blue add-label">E-MAIL</label>
                                 <ul>
                                     <li class="mail" :class="{ 'warn' : pass(3) }"><a class="del_pos" @click.prevent="formEmail = ''" href="#" v-show="formEmail != ''"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input type="email" maxlength="50" placeholder="避免使用易漏信之免費信箱" v-model="formEmail" @focus="avoidAnriod">
+                                        <input type="email" maxlength="50" placeholder="避免使用易漏信之免費信箱" v-model="formEmail">
                                     </li>
                                 </ul>
                             </div>
@@ -337,7 +337,7 @@
                                         </ul>
                                     </li>
                                     <li class="add" :class="{ 'warn' : pass(6) }"><a class="del_pos" @click.prevent="formAddress = ''" href="#" v-show="formAddress != ''"><img src="asset/svg/del.svg" alt=""/></a>
-                                        <input type="text" maxlength="50" placeholder="請輸入詳細地址" v-model="formAddress" @focus="avoidAnriod">
+                                        <input type="text" maxlength="50" placeholder="請輸入詳細地址" v-model="formAddress">
                                     </li>
                                 </ul>
                             </div>
