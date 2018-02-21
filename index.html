@@ -44,7 +44,6 @@
     </head>
     <body>
         <div id="indexPage" v-cloak v-if="!ieFG">
-            <!--loading-->
             <transition name="fade">
                 <div class="loadingBox" v-if="!loadFG">
                     <div class="loading"></div>
@@ -98,14 +97,10 @@
                     <div class="bg"></div>
                 </div>
             </transition>
-            <!-- content-->
             <div class="wrap">
-                <!-- header -->
-                <!-- add '.open'-->
-                <header :class="{ 'open' : menuFG }"><a @click="gaclick('logo');" class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
-                    <!-- bur-->
+                <header :class="{ 'open' : menuFG }">
+                    <a @click="gaclick('logo');" class="logo" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                     <div class="burBox" @click.prevent.stop="{ menuFG = !menuFG; gaclick('menu'); }"><a class="bur" :class="{ 'active' : menuFG }" href=""><span></span></a></div>
-                    <!-- M Menu-->
                 </header>
                 <transition name="fade">
                     <div class="menuBox" v-show="menuFG">
@@ -127,7 +122,6 @@
                         <div v-show="goGameFG" class="btnBox-kv poabs" @click.prevent.stop="{ scrollMenu('game', 95); gaclick('cta_btn'); }"><a class="btn-game bg-blue" href="#">
                             <div class="inner"><span class="pro"><img src="img/btn-pro.png" alt=""/></span><span>測驗抽正貨</span><span class="triBox"><span class="triangle"></span></span></div></a></div>
                     </transition>
-                    <!--kv-->
                     <section class="kv">
                         <h1 class="blue"><span class="font-s">只給肌膚需要的</span><span class="main"><span class="f-logo"><img src="asset/svg/freeplus.svg" alt=""/></span><span>的零添加主張</span></span></h1>
                         <div class="mainBox">
@@ -170,7 +164,6 @@
                         <img src="img/bubble.png" alt="" class="bubble seven">
                         <img src="img/bubble.png" alt="" class="bubble eight">
                     </section>
-                    <!--intro-->
                     <section class="intro">
                         <div class="txt-fir"><span><span class="inlineblock">零添加的</span><span class="f-logo inlineblock"><img src="asset/svg/freeplus.svg" alt=""/></span></span><span>堅持選用不易造成肌膚負擔的成份</span><span>只給肌膚需要的水潤呵護</span><span class="lighthigh blue">“ 懂得捨棄，才能獲得嶄新的可能。”</span></div>
                         <div class="txt-sec"><span>即刻開啟妳的</span><span class="lighthigh blue"> <span class="underline">零添加生活 !</span></span></div>
@@ -188,7 +181,6 @@
                         <div class="cloud3 poabs"><img src="img/cloud3.png" alt=""/>
                         </div>
                     </section>
-                    <!--game-->
                     <section class="game">
                         <transition name="fade">
                             <div class="step1" v-show="gameStep == 0">
@@ -202,7 +194,6 @@
                                 <div class="main">
                                     <div class="stickerBox">
                                         <ul>
-                                            <!-- a.active -->
                                             <li @click.prevent.stop="{ choosen = 0; gaclick('icon_1'); }"><a class="option1" :class="{ 'active' : choosen == 0 }" href="#"><span class="img"><img src="img/sticker/option1.png" alt=""/></span>
                                                 <span class="txt">瓶瓶罐罐</span></a></li>
                                             <li @click.prevent.stop="{ choosen = 1; gaclick('icon_2'); }"><a class="option2" :class="{ 'active' : choosen == 1 }" href="#"><span class="img"><img src="img/sticker/option2.png" alt=""/></span>
@@ -269,7 +260,6 @@
                             </div>
                         </transition>
                     </section>
-                    <!--form-->
                     <section class="form">
                         <h2><span>\ 立即體驗<span class="underline blue"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span><span class="dot">生</span><span class="dot">活</span></span> /</span><span>讓肌膚重見轉機！</span></h2>
                         <div class="sub">即日起至2018年3月31日止<br>填妥資料即可參加抽獎！</div>
@@ -304,7 +294,6 @@
                             </div>
                             <div class="formBox">
                                 <ul>
-                                    <!-- li.warn -->
                                     <li :class="{ 'warn' : pass(1) }">
                                         <label class="blue">姓名</label><a class="del_pos" @click.prevent="formName = ''" href="#" v-show="formName != ''"><img src="asset/svg/del.svg" alt=""/></a>
                                         <input  type="text" maxlength="5" placeholder="請填寫真實姓名" v-model="formName">
@@ -341,7 +330,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!--- div.warn-check -->
                             <div class="check" :class="{ 'warn-check' : pass(7) }">
                                 <label class="label-radio">
                                     <input class="radio" type="radio" name="foo"><span>本人同意<a @click="gaclick('to_rule');" href="rule.html" target="_blank">活動辦法、個資法與隱私權</a>相關規定</span>
@@ -351,7 +339,6 @@
                         <div class="light-bg"><img src="img/light.png" alt=""/>
                         </div>
                     </section>
-                    <!-- about-->
                     <section class="about">
                         <div class="featureBox">
                             <h2><span>\ 敏弱肌也<span class="underline blue"> <span class="dot">安</span><span class="dot">心</span></span> /</span></h2>
@@ -379,7 +366,6 @@
                             </div>
                         </div>
                     </section>
-                    <!--product-->
                     <section class="productBox">
                         <div class="pro-kv">
                             <h2><span>\ 捨棄多餘，留下<span class="underline blue"> <span class="dot">精</span><span class="dot">華</span></span> /</span></h2>
@@ -442,7 +428,6 @@
                             </div>
                         </div>
                     </section>
-                    <!--shop-->
                     <section class="shop">
                         <div class="watsons">
                             <h2><span>\ freeplus 就在妳身邊！ /</span></h2>
