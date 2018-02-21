@@ -34,11 +34,11 @@
         <!-- Facebook Pixel Code -->
         <script>
             !function(a,c,d,g,h,i,j){a.fbq||(h=a.fbq=function(){h.callMethod?h.callMethod.apply(h,arguments):h.queue.push(arguments)},!a._fbq&&(a._fbq=h),h.push=h,h.loaded=!0,h.version='2.0',h.queue=[],i=c.createElement(d),i.async=!0,i.src=g,j=c.getElementsByTagName(d)[0],j.parentNode.insertBefore(i,j))}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '170759430216080');
+            fbq('init', '437887596396429');
             fbq('track', 'PageView');
         </script>
         <noscript>
-            <img height="1" width="1" src="https://www.facebook.com/tr?id=170759430216080&ev=PageView&noscript=1"/>
+            <img height="1" width="1" src="https://www.facebook.com/tr?id=437887596396429&ev=PageView&noscript=1"/>
         </noscript>
         <!-- End Facebook Pixel Code -->
     </head>
@@ -110,7 +110,7 @@
                             <li><a @click.prevent.self="{ scrollMenu('game'); gaclick('game'); }" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('about'); gaclick('products'); }" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('productBox'); gaclick('links'); }" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="false">中獎名單</a></li>
+                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="endGame">中獎名單</a></li>
                             <li><a @click="{ menuFG = false; gaclick('rules'); }" href="rule.html" target="_blank">活動辦法</a></li>
                         </ul><a class="menu-logo poabs" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>
@@ -208,7 +208,7 @@
                                         </ul>
                                     </div>
                                     <div class="game-sub">請點擊一項<span class="blue">最想捨棄</span>的東西<br>測出妳的零添加主張</div>
-                                </div><a class="btn" @click.prevent="{ changeStep(1, 'game'); gaclick('game_submit'); }" href="#">我決定好了<span class="arrow"></span></a>
+                                </div><a class="btn" @click.prevent="{ changeStep(1, 'game'); gaclick('game_submit'); fbq('track', 'AddToCart'); }" href="#">我決定好了<span class="arrow"></span></a>
                             </div>
                         </transition>
                         <transition name="fade">
@@ -262,7 +262,7 @@
                     </section>
                     <section class="form">
                         <h2><span>\ 立即體驗<span class="underline blue"> <span class="dot">零</span><span class="dot">添</span><span class="dot">加</span><span class="dot">生</span><span class="dot">活</span></span> /</span><span>讓肌膚重見轉機！</span></h2>
-                        <div class="sub">即日起至2018年3月31日止<br>填妥資料即可參加抽獎！</div>
+                        <div class="sub">即日起至2018年3月23日止<br>填妥資料即可參加抽獎！</div>
                         <div class="award">
                             <ul>
                                 <li>
@@ -334,7 +334,7 @@
                                 <label class="label-radio">
                                     <input class="radio" type="radio" name="foo"><span>本人同意<a @click="gaclick('to_rule');" href="rule.html" target="_blank">活動辦法、個資法與隱私權</a>相關規定</span>
                                 </label>
-                            </div><a class="btn" @click.prevent="{ checkData(); gaclick('form_submit'); }" href="#">確認送出<span class="arrow"></span></a>
+                            </div><a class="btn" @click.prevent="{ checkData(); gaclick('form_submit'); fbq('track', 'Lead'); }" href="#">確認送出<span class="arrow"></span></a>
                         </div>
                         <div class="light-bg"><img src="img/light.png" alt=""/>
                         </div>

@@ -52,6 +52,12 @@ window.sr = ScrollReveal({
             },
             fullAddr(){
                 return this.formCity + this.formDistrict + this.formAddress;
+            },
+            endGame(){
+                var endTime = Date.parse('2018/03/24 00:00:00').valueOf();
+                var nowTime = Date.parse(new Date()).valueOf();
+                var result = nowTime >= endTime;
+                return result;
             }
         },
         created(){
@@ -265,6 +271,11 @@ window.sr = ScrollReveal({
                 return this.inputWarn.indexOf(index) > -1;
             },
             checkData(){
+                if(this.endGame){
+                    alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    return;
+                }
+
                 this.chkmsg = [];
                 this.inputWarn = [];
                 var read = document.querySelector('.form .radio').checked;
@@ -293,6 +304,11 @@ window.sr = ScrollReveal({
                 (this.chkmsg.length > 0) ? this.checkFG = true : this.sendAPI() ;
             },
             sendAPI(){
+                if(this.endGame){
+                    alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    return;
+                }
+
                 var $this = this;
                 var url = location.origin + finder + '/api/post_member.php';
                 var postData = new FormData();
@@ -423,6 +439,10 @@ window.sr = ScrollReveal({
                 }
                 tick();
             }
+        },
+        destroyed: function () {
+            window.removeEventListener('scroll', this.ctrlScroll);
+            window.removeEventListener('orientationchange', this.avoidAnriod);
         },
         watch:{
             isOverflow: 'setOverFlow'

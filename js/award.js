@@ -29,6 +29,12 @@
             phoneKey: ''
         },
         computed:{
+            showList(){
+                var endTime = Date.parse('2018/03/24 00:00:00').valueOf();
+                var nowTime = Date.parse(new Date()).valueOf();
+                var result = nowTime >= endTime;
+                return result;
+            },
             allList(){
                 return (this.phoneKey === '') ? this.awardList : this.awardList.filter(function(item){ return item.phone.slice(7, 10).indexOf(awardCtrl.$data.phoneKey) > -1; });
             },
@@ -40,18 +46,24 @@
             }
         },
         created(){
+            if(!this.showList){
+                location.href = 'index.html';
+                return;
+            }
             window.addEventListener('orientationchange', this.avoidAnriod);
         },
         mounted(){
             document.addEventListener("DOMContentLoaded", () => {
-                this.loadFG = true;
-                this.avoidAnriod();
-                
-                var btn = document.querySelector('.bur.active');
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    (this.chkWebview()) ? location.href = 'index.html' : window.close();
-                });
+                setTimeout(() => {
+                    this.loadFG = true;
+                    this.avoidAnriod();
+
+                    var btn = document.querySelector('.bur.active');
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        (this.chkWebview()) ? location.href = 'index.html' : window.close();
+                    });
+                }, 1000);
 
                 gapage('award');
             });
@@ -98,6 +110,9 @@
                     };
                 };
             }
+        },
+        destroyed: function () {
+            window.removeEventListener('orientationchange', this.avoidAnriod);
         }
     });
 })();
