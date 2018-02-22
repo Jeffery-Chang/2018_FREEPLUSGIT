@@ -6,13 +6,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>freeplus的零添加主張</title>
         <!-- facebook share-->
-        <meta name="url" content="http://cell2.webgene.com.tw/freeplus_2018/"> 
+        <meta name="url" content="https://freeplus.webgene.com.tw/"> 
         <meta name="description" content="零添加的freeplus只給肌膚需要的水潤呵護。立即參加《捨/得測驗》獲得嶄新生活的秘密方針，再抽溫和淨潤皂霜x卸粧霜正貨！點我測驗Go>>" /> 
         <meta property="og:type" content="website">
-        <meta property="og:url" content="http://cell2.webgene.com.tw/freeplus_2018/" />
+        <meta property="og:url" content="https://freeplus.webgene.com.tw/" />
         <meta property="og:title" content="即刻開啟肌膚的零添加生活！｜freeplus">
         <meta property="og:description" content="零添加的freeplus只給肌膚需要的水潤呵護。立即參加《捨/得測驗》獲得嶄新生活的秘密方針，再抽溫和淨潤皂霜x卸粧霜正貨！點我測驗Go>>">
-        <meta property="og:image" content="http://cell2.webgene.com.tw/freeplus_2018/img/share.png">
+        <meta property="og:image" content="https://freeplus.webgene.com.tw/img/share.png">
         <!-- favicon-->
         <link rel="icon" href="img/favicon.ico">
         <!-- css style-->
@@ -71,30 +71,30 @@
             </transition>
             <transition name="fade">
                 <div class="popup" v-show="doneFG">
-                    <div class="main"><a class="close" @click.prevent="doneFG = false" href=""><img src="asset/svg/del.svg" alt=""/></a>
+                    <div class="main finish"><a class="close" @click.prevent="doneFG = false" href=""><img src="asset/svg/del.svg" alt=""/></a>
                         <div class="sub">謝謝您的參與<br>中獎名單將於2018/03/31公佈</div>
                         <h4 class="blue">＼邀您搶先體驗！／<br>                    【freeplus泡泡體驗快閃活動】 </h4>
                         <div class="sub">我的零添加主張，就從洗臉開始！ </div>
-                        <div class="sub">凡參加freeplus泡泡體驗， <br>即可獲得洗顏皂霜試用包及奶泡咖啡!</div>
-                        <div class="sub-tt blue"> 活動時間 </div>
+                        <div class="sub cafeBox"> <span><span class="cafe" v-show="false"><img src="img/cafe.png" alt=""/></span><span style="text-align: center;">凡參加freeplus泡泡體驗，<span class="break">即可獲得洗顏皂霜試用包及奶泡咖啡!</span></span></span></div>
+                        <div class="sub-tt blue"> 活動時間 </div>
                         <div class="timeBox">
                             <div class="time">
                                 <ul> 
-                                    <li class="date">3/2  </li>
+                                    <li class="date">3/2</li>
                                     <li>17:00-21:00</li>
                                 </ul>
                             </div>
                             <div class="time">
                                 <ul> 
-                                    <li class="date">3/3-3/4   </li>
+                                    <li class="date">3/3-3/4</li>
                                     <li>13:00-21:00</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="sub-tt blue"> 活動地點</div>
                         <div class="sub">ATT 4 fun forever21前廣場</div>
+                        <div class="house" v-show="false"><img src="img/watsons.png" alt=""/></div>
                     </div>
-                    <div class="bg"></div>
                 </div>
             </transition>
             <div class="wrap">
@@ -110,7 +110,7 @@
                             <li><a @click.prevent.self="{ scrollMenu('game'); gaclick('game'); }" :class="{ 'active' : pageStep == 2 }" href="#">捨/得測驗</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('about'); gaclick('products'); }" :class="{ 'active' : pageStep == 3 }" href="#">產品介紹</a></li>
                             <li><a @click.prevent.self="{ scrollMenu('productBox'); gaclick('links'); }" :class="{ 'active' : pageStep == 4 }" href="#">立即選購</a></li>
-                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="endGame">中獎名單</a></li>
+                            <li><a @click="{ menuFG = false; gaclick('award'); }" href="award.html" target="_blank" v-if="showList">中獎名單</a></li>
                             <li><a @click="{ menuFG = false; gaclick('rules'); }" href="rule.html" target="_blank">活動辦法</a></li>
                         </ul><a class="menu-logo poabs" href="index.html"> <img src="asset/svg/logo.svg" alt="logo"></a>
                         <div class="pattern poabs"><img src="asset/svg/pattern.svg" alt=""/>

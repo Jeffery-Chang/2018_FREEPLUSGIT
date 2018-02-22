@@ -11,11 +11,9 @@ var finder = (location.hostname === 'cell2.webgene.com.tw') ? '/freeplus_2018' :
 
 function gapage(page) {
     ga('send', 'pageview', page);
-    console.log('page:', page);
 }
 function gaclick(evt) {
-    ga('send', 'event', 'click', evt);
-    console.log('click:', evt);
+    ga('send', 'event', 'freeplus', 'click', evt);
 }
 function trackWaitJump(event, url) {
     setTimeout(function () {

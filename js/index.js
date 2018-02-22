@@ -21,7 +21,7 @@ window.sr = ScrollReveal({
             loadFG: false,
             menuFG: false,
             checkFG: false,
-            doneFG: false,
+            doneFG: true,
             goGameFG: true,
             pageStep: 0,
             gameStep: 0,
@@ -55,6 +55,12 @@ window.sr = ScrollReveal({
             },
             endGame(){
                 var endTime = Date.parse('2018/03/24 00:00:00').valueOf();
+                var nowTime = Date.parse(new Date()).valueOf();
+                var result = nowTime >= endTime;
+                return result;
+            },
+            showList(){
+                var endTime = Date.parse('2018/01/31 00:00:00').valueOf();
                 var nowTime = Date.parse(new Date()).valueOf();
                 var result = nowTime >= endTime;
                 return result;

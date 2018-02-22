@@ -30,7 +30,7 @@
         },
         computed:{
             showList(){
-                var endTime = Date.parse('2018/03/24 00:00:00').valueOf();
+                var endTime = Date.parse('2018/01/31 00:00:00').valueOf();
                 var nowTime = Date.parse(new Date()).valueOf();
                 var result = nowTime >= endTime;
                 return result;
@@ -51,6 +51,16 @@
                 return;
             }
             window.addEventListener('orientationchange', this.avoidAnriod);
+        },
+        beforeMount(){
+            var $this = this;
+            var url = location.origin + finder + '/api/get_winner.php';
+            axios({
+                method: 'get',
+                url: url
+            }).then(function(response){
+                $this.awardList = response.data.data;
+            });
         },
         mounted(){
             document.addEventListener("DOMContentLoaded", () => {

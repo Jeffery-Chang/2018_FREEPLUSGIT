@@ -100,8 +100,7 @@ h2, h3, .award .tt, h1, .bb1,
   font-weight: bold;
   font-family: 'Noto Serif,PT Serif', 'source-han-serif-tc', Songti TC, serif; }
 
-html,
-body, input, select, .bubbleBox, .waterdrop, .btn-again .inner, .popup .bg, .menuBox, .loadingBox {
+input, select, .bubbleBox, .waterdrop, .btn-again .inner, .popup .bg, .menuBox, .loadingBox {
   width: 100%;
   height: 100%; }
 
@@ -394,6 +393,7 @@ body {
 
 html,
 body {
+  width: 100%;
   line-height: 1.7;
   background-color: #eee;
   text-align: center;
@@ -920,7 +920,7 @@ h1 {
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #daeffc), color-stop(100%, #cceafa));
   background: -webkit-gradient(linear, left top, left bottom, from(#daeffc), to(#cceafa));
   background: linear-gradient(to bottom, #daeffc 0%, #cceafa 100%); }
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-device-width: 1024px) {
     .kv {
       height: 100vh; } }
   @media screen and (max-width: 767px) {
@@ -1875,33 +1875,20 @@ span.inlineblock {
   z-index: 100;
   position: fixed;
   width: 100%;
-  height: 100%; }
-  @media screen and (max-width: 767px) {
-    .popup {
-      position: fixed;
-      overflow-y: scroll; } }
+  height: 100vh;
+  overflow-y: scroll; }
   .popup .bg {
     position: fixed;
     z-index: 10;
     background: rgba(0, 0, 0, .8); }
   .popup .main {
     width: 100%;
-    max-width: 570px;
     padding: 30px 30px 15px;
     background: url(../img/store-bg.png) repeat;
     background-size: 100px 100px;
     font-size: 16px;
     font-size: 1.6rem;
     z-index: 101; }
-    @media screen and (min-width: 768px) {
-      .popup .main {
-        position: fixed;
-        border-radius: 10px;
-        width: 80%;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%); } }
     @media screen and (min-width: 414px) and (max-width: 767px) {
       .popup .main {
         padding: 60px 30px 35px;
@@ -1915,8 +1902,8 @@ span.inlineblock {
         height: 100%;
         padding-top: 60px; } }
   .popup .close {
-    position: absolute;
-    right: 15px;
+    position: fixed;
+    right: 25px;
     top: 15px;
     width: 35px; }
     @media screen and (max-width: 374px) {
@@ -1964,19 +1951,47 @@ span.inlineblock {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column; }
+    flex-direction: column;
+    position: fixed;
+    border-radius: 10px;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
     .popup .form-check p {
       font-size: 18px;
       font-size: 1.8rem; }
+  .popup .finish {
+    min-height: 100vh; }
+
+.cafeBox span {
+  display: inline-block; }
+  .cafeBox span span {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; }
     @media screen and (max-width: 767px) {
-      .popup .form-check {
-        position: fixed;
-        border-radius: 10px;
-        width: 80%;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%); } }
+      .cafeBox span span:last-child {
+        width: calc(70% - 10px); } }
+.cafeBox .break {
+  display: block; }
+  @media screen and (max-width: 767px) {
+    .cafeBox .break {
+      display: inline; } }
+
+.cafe {
+  width: 100px;
+  display: inline-block;
+  margin-right: 10px; }
+  @media screen and (max-width: 767px) {
+    .cafe {
+      width: 30%; } }
+
+.house {
+  width: 80%;
+  margin: auto;
+  max-width: 550px; }
 
 .featureBox {
   background: white;
@@ -2720,8 +2735,8 @@ span.inlineblock {
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%);
       background: white;
-      -webkit-animation: loadingline 2.5s ease-out infinite;
-      animation: loadingline 2.5s ease-out infinite;
+      -webkit-animation: loadingline 2s ease-out infinite;
+      animation: loadingline 2s ease-out infinite;
       display: block; }
 
 
