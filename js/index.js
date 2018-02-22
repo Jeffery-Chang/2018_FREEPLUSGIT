@@ -21,7 +21,7 @@ window.sr = ScrollReveal({
             loadFG: false,
             menuFG: false,
             checkFG: false,
-            doneFG: true,
+            doneFG: false,
             goGameFG: true,
             pageStep: 0,
             gameStep: 0,
@@ -45,7 +45,7 @@ window.sr = ScrollReveal({
         },
         computed:{
             isOverflow(){
-                return this.menuFG || this.doneFG || this.checkFG;
+                return !this.loadFG || this.menuFG || this.doneFG || this.checkFG;
             },
             isNext(){
                 return (this.choosen != 999 && this.choosen >= 0 && this.choosen <= 5);
@@ -81,13 +81,15 @@ window.sr = ScrollReveal({
                 document.querySelector('section.kv').style.height = (document.querySelector('section.kv').offsetHeight - 70) + 'px';
                 //alert('adjust safari done');
             }
+            
             if(this.chkWebview) document.querySelector('section.game').style.height = 'auto';
+            this.setOverFlow();
+            
             document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     this.loadFG = true;
                     this.$nextTick(function(){
                         setTimeout(() => {
-                            this.setOverFlow();
                             this.avoidAnriod();
                             this.ctrlScroll();
                             this.initTwCitySelector();
@@ -372,7 +374,7 @@ window.sr = ScrollReveal({
                     return 999;
                 }
             },
-            chkWebview: function(){
+            chkWebview(){
                 var userAgent = window.navigator.userAgent.toLowerCase();
                 var standalone = window.navigator.standalone;
                 var safari = /safari/.test(userAgent);
