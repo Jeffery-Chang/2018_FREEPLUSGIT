@@ -104,4 +104,26 @@
             display: block;
         }
     }
+    .fb-btn {
+        margin-top: 0;
+        margin-right: 0;
+        height: 90px;
+        line-height: 90px;
+        padding: 0;
+        @media screen and (max-width: 767px) {
+            height: 80px;
+            line-height: 80px;
+        }
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    span.fb-icon {
+        width: 12px;
+        margin-right: 15px;
+        @media screen and (max-width: 767px) {
+            margin-right: 8px;
+        }
+    }
 }

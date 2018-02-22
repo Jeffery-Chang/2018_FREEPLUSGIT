@@ -2372,6 +2372,25 @@ span.inlineblock {
       padding: 15px 0; } }
   .official .btn span {
     display: block; }
+.official .fb-btn {
+  margin-top: 0;
+  margin-right: 0;
+  height: 90px;
+  line-height: 90px;
+  padding: 0; }
+  @media screen and (max-width: 767px) {
+    .official .fb-btn {
+      height: 80px;
+      line-height: 80px; } }
+  .official .fb-btn span {
+    display: inline-block;
+    vertical-align: middle; }
+.official span.fb-icon {
+  width: 12px;
+  margin-right: 15px; }
+  @media screen and (max-width: 767px) {
+    .official span.fb-icon {
+      margin-right: 8px; } }
 
 .menuBox {
   background: #dff1fa;
