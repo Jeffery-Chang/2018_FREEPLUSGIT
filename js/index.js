@@ -60,7 +60,7 @@ window.sr = ScrollReveal({
                 return result;
             },
             showList(){
-                var endTime = Date.parse('2018/01/31 00:00:00').valueOf();
+                var endTime = Date.parse('2018/03/31 00:00:00').valueOf();
                 var nowTime = Date.parse(new Date()).valueOf();
                 var result = nowTime >= endTime;
                 return result;

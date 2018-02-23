@@ -1968,25 +1968,20 @@ span.inlineblock {
 .cafeBox span {
   display: inline-block; }
   .cafeBox span span {
-    display: inline-block;
     text-align: left;
     vertical-align: middle; }
     @media screen and (max-width: 767px) {
       .cafeBox span span:last-child {
-        width: calc(70% - 10px); } }
+        width: 100%;
+        text-align: center; } }
 .cafeBox .break {
   display: block; }
-  @media screen and (max-width: 767px) {
-    .cafeBox .break {
-      display: inline; } }
 
 .cafe {
-  width: 100px;
-  display: inline-block;
-  margin-right: 10px; }
+  width: 180px; }
   @media screen and (max-width: 767px) {
     .cafe {
-      width: 30%; } }
+      width: 60%; } }
 
 .house {
   width: 80%;
@@ -2264,9 +2259,9 @@ span.inlineblock {
     .proBox {
       padding-left: 20px; } }
   .proBox .sticker {
-    width: 100px;
-    left: 0;
-    bottom: 75px; }
+    width: 130px;
+    left: -30px;
+    bottom: 81px; }
     @media screen and (max-width: 767px) {
       .proBox .sticker {
         width: 45px;

@@ -55,12 +55,12 @@
         beforeMount(){
             var $this = this;
             var url = location.origin + finder + '/api/get_winner.php';
-            axios({
+            /*axios({
                 method: 'get',
                 url: url
             }).then(function(response){
                 $this.awardList = response.data.data;
-            });
+            });*/
         },
         mounted(){
             document.addEventListener("DOMContentLoaded", () => {
