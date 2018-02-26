@@ -82,7 +82,7 @@ window.sr = ScrollReveal({
                 //alert('adjust safari done');
             }
             
-            if(this.chkWebview) document.querySelector('section.game').style.height = 'auto';
+            if(this.chkWebview()) document.querySelector('section.game').style.height = 'auto';
             this.setOverFlow();
             
             document.addEventListener("DOMContentLoaded", () => {

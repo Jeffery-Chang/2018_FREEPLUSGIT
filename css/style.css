@@ -1631,10 +1631,10 @@ span.inlineblock {
           bottom: 2px; } }
 
 .btn {
-  margin-top: 30px; }
+  margin: 30px auto; }
   @media screen and (max-width: 413px) {
     .btn {
-      margin-top: 20px; } }
+      margin: 20px auto; } }
 
 .step2 {
   height: 100%; }
@@ -1971,7 +1971,7 @@ span.inlineblock {
     text-align: left;
     vertical-align: middle; }
     @media screen and (max-width: 767px) {
-      .cafeBox span span:last-child {
+      .cafeBox span span span {
         width: 100%;
         text-align: center; } }
 .cafeBox .break {
