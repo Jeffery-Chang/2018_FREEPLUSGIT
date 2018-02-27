@@ -264,7 +264,7 @@
                                     <div class="leaves"><img src="img/leaves.png" alt=""/>
                                     </div>
                                 </div>
-                                <div class="btnBox"><a class="fb btn" @click.prevent="{ shareFB('?back=1'); gaclick('fb_share'); }" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" @click.prevent="{ changeStep(2, 'form'); gaclick('to_form'); }" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
+                                <div class="btnBox"><a class="fb btn" @click.prevent="{ shareFB(); gaclick('fb_share'); }" href="#"><span class="icon"><img src="asset/svg/fb.svg" alt=""/></span><span>分享零添加秘密</span></a><a class="go btn" @click.prevent="{ changeStep(2, 'form'); gaclick('to_form'); }" href="#"><span class="product"><img src="img/btn-game-pro.png" alt=""/></span><span>填單抽正貨</span></a></div>
                             </div>
                         </transition>
                     </section>
@@ -458,7 +458,7 @@
                                 <span>前往 freeplus 官方網站</span>
                                 <span>了解更多 +</span>
                             </a>
-                            <a @click="gaclick('fb_fanpage');" class="btn fb-btn fb" href="https://goo.gl/UzRE23" target="_blank">
+                            <a @click="gaclick('fb_fanpage');" class="btn fb-btn fb" href="https://www.facebook.com/taiwan.freeplus/" target="_blank">
                                 <span class="fb-icon"><img src="asset/svg/fb.svg" alt=""/></span>
                                 <span>freeplus 台灣 粉絲團</span>
                             </a>

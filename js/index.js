@@ -404,7 +404,7 @@ window.sr = ScrollReveal({
                 var fb_url = (isMobile.phone) ? 'http://m.facebook.com/sharer.php?u=' : 'http://www.facebook.com/sharer.php?u=';
                 var fbBack_url = (track) ? track + '&v=' + urlDate : '?v=' + urlDate;
                 var share_u;
-                share_u = location.href + fbBack_url;
+                share_u = 'https://goo.gl/UzRE23' + fbBack_url;
                 window.open(fb_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
             },
             setOverFlow(){
