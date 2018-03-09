@@ -76,6 +76,11 @@ window.sr = ScrollReveal({
                 location.href = 'index_ie.html';
                 return;
             }
+            
+            if(location.protocol === 'http:' && location.hostname !== '192.168.123.30'){
+                location.href = location.href.replace('http', 'https');
+                return;
+            }
 
             if(this.chkSafari()){
                 document.querySelector('section.kv').style.height = (document.querySelector('section.kv').offsetHeight - 70) + 'px';
