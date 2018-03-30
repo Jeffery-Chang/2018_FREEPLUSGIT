@@ -34,7 +34,7 @@ window.sr = ScrollReveal({
             formCity: '請選擇縣市',
             formDistrict: '請選擇區域',
             formAddress: '',
-            chkmsg: [],
+            chkmsg: [`<p>得獎名單出爐！<br>快來看看你有沒有中獎</p>`],
             inputWarn: [],
             ga:{
                 brandFG: false,
@@ -77,7 +77,7 @@ window.sr = ScrollReveal({
                 return;
             }
             
-            if(location.protocol === 'http:' && location.hostname !== '192.168.123.30'){
+            if(location.protocol === 'http:' && location.hostname !== '192.168.123.30' && location.hostname !== 'cell2.webgene.com.tw'){
                 location.href = location.href.replace('http', 'https');
                 return;
             }
@@ -94,6 +94,7 @@ window.sr = ScrollReveal({
                 setTimeout(() => {
                     this.loadFG = true;
                     this.$nextTick(function(){
+                        if(this.showList) this.checkFG = true;
                         setTimeout(() => {
                             this.avoidAnriod();
                             this.ctrlScroll();
@@ -285,7 +286,8 @@ window.sr = ScrollReveal({
             },
             checkData(){
                 if(this.endGame){
-                    alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    //alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    this.checkFG = true;
                     return;
                 }
 
@@ -318,7 +320,8 @@ window.sr = ScrollReveal({
             },
             sendAPI(){
                 if(this.endGame){
-                    alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    //alert('活動已結束！\n獲獎名單將於3/31公布！');
+                    this.checkFG = true;
                     return;
                 }
 

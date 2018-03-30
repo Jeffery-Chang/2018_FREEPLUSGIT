@@ -65,6 +65,7 @@
                 <div class="popup" v-show="checkFG">
                     <div class="main form-check"><a class="close" @click.prevent="checkFG = false" href=""><img src="asset/svg/del.svg" alt=""/></a>
                         <p v-for="(item, $index) in chkmsg" v-html="item"></p>
+                        <a class="btn" @click="{ checkFG = false; }" href="award.html" target="_blank" ><span>點我前往</span></a>
                     </div>
                     <div class="bg"></div>
                 </div>
